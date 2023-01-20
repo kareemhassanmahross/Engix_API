@@ -18,38 +18,37 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::with('catagory')->find($id);
-
         return response($product);
     }
     public function create(Request $req)
     {
         try {
-            $validateUser = Validator::make(
+            $validateProduct = Validator::make(
                 $req->all(),
                 [
-                    'name_ar' => 'required',
-                    'name_en' => 'required',
+                    'nameAr' => 'required',
+                    'nameEn' => 'required',
                     'image' => 'required',
-                    'description_ar' => 'required',
-                    'description_en' => 'required',
+                    'descriptionAr' => 'required',
+                    'descriptionEn' => 'required',
                     'price' => 'required',
                     'category_id' => 'required',
                 ]
             );
 
-            if ($validateUser->fails()) {
+            if ($validateProduct->fails()) {
                 return response()->json([
                     'status' => false,
                     'message' => 'validation error',
-                    'errors' => $validateUser->errors()
+                    'errors' => $validateProduct->errors()
                 ], 401);
             }
             $product = Product::create([
-                'name_ar' => $req->name_ar,
-                'name_en' => $req->name_en,
+                'nameAr' => $req->nameAr,
+                'nameEn' => $req->nameEn,
                 'image' => $req->image,
-                'description_ar' => $req->description_ar,
-                'description_en' => $req->description_en,
+                'descriptionAr' => $req->descriptionAr,
+                'descriptionEn' => $req->descriptionEn,
                 'price' => $req->price,
                 'category_id' => $req->category_id,
             ]);
@@ -71,11 +70,11 @@ class ProductController extends Controller
         $validateUser = Validator::make(
             $req->all(),
             [
-                'name_ar' => 'required',
-                'name_en' => 'required',
+                'nameAr' => 'required',
+                'nameEn' => 'required',
                 'image' => 'required',
-                'description_ar' => 'required',
-                'description_en' => 'required',
+                'descriptionAr' => 'required',
+                'descriptionEn' => 'required',
                 'price' => 'required',
                 'category_id' => 'required',
             ]
@@ -90,11 +89,11 @@ class ProductController extends Controller
         }
         $product = Product::findOrFail($id);
         $product->update([
-            'name_ar' => $req->name_ar,
-            'name_en' => $req->name_en,
+            'nameAr' => $req->nameAr,
+            'nameEn' => $req->nameEn,
             'image' => $req->image,
-            'description_ar' => $req->description_ar,
-            'description_en' => $req->description_en,
+            'descriptionAr' => $req->descriptionAr,
+            'descriptionEn' => $req->descriptionEn,
             'price' => $req->price,
             'category_id' => $req->category_id,
         ]);
