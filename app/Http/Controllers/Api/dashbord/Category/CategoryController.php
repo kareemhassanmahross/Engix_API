@@ -15,7 +15,7 @@ class CategoryController extends Controller
     }
     public function show($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Category::with('product')->findOrFail($id);
         return response($category);
     }
     public function create(Request $req)

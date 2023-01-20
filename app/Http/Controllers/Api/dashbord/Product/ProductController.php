@@ -17,7 +17,8 @@ class ProductController extends Controller
     }
     public function show($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::with('catagory')->find($id);
+
         return response($product);
     }
     public function create(Request $req)
