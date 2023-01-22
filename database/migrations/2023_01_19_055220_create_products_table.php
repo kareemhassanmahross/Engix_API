@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('nameAr');
             $table->string('nameEn');
-            $table->binary('image');
+            $table->string('nameAr');
             $table->text('descriptionAr');
             $table->text('descriptionEn');
             $table->float('price');
+            $table->integer('amount');
             $table->foreignId("category_id")->nullable()->constrained("categories")->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });

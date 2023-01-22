@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Product extends Model
 {
@@ -11,12 +12,24 @@ class Product extends Model
     protected $fillable = [
         'nameAr',
         'nameEn',
-        'image',
+        'amount',
         'descriptionAr',
         'descriptionEn',
         'category_id',
         'price'
     ];
+    protected $hidden = ["created_at", "updated_at"];
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => json_decode($value, true),
+            set: fn ($value) => json_encode($value),
+        );
+    }
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
     public function catagory()
     {
         return $this->belongsTo(Category::class, "category_id", "id");

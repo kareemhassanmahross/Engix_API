@@ -11,12 +11,12 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::with('product')->get();
+        $categories = Category::get();
         return response($categories);
     }
     public function show($id)
     {
-        $category = Category::with('product')->findOrFail($id);
+        $category = Category::findOrFail($id);
         return response($category);
     }
     public function create(Request $req)
@@ -27,8 +27,8 @@ class CategoryController extends Controller
             [
                 "categoryNameAr" => 'required',
                 "categoryNameEn" => 'required',
-                "subCategoryAr" => 'required',
-                "subCategoryEn" => 'required',
+                "subCategoryAr" => 'nullable',
+                "subCategoryEn" => 'nullable',
             ]
         );
         if ($validateCategory->fails()) {
@@ -78,7 +78,7 @@ class CategoryController extends Controller
         ]);
         return response()->json([
             'status' => true,
-            'message' => 'Category Created Successfully',
+            'message' => 'Category Updated Successfully',
             // 'token' => $product->createToken("API TOKEN")->plainTextToken
         ], 200);
     }
@@ -86,6 +86,17 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return response($category);
+        if ($category) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Product Deleted Successfully',
+                // 'token' => $product->createToken("API TOKEN")->plainTextToken
+            ], 200);
+        }
+        return response()->json([
+            'status' => false,
+            'message' => 'Product not Deleted',
+            // 'token' => $product->createToken("API TOKEN")->plainTextToken
+        ], 401);
     }
 }

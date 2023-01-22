@@ -6,18 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\File;
+use App\http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('catagory')->get();
+        $products = Product::with('images')->get();
         return response($products);
     }
     public function show($id)
     {
-        $product = Product::with('catagory')->find($id);
+        $product = Product::with('images')->findOrFail($id);
         return response($product);
     }
     public function create(Request $req)
@@ -28,14 +29,13 @@ class ProductController extends Controller
                 [
                     'nameAr' => 'required',
                     'nameEn' => 'required',
-                    'image' => 'required',
+                    'amount' => 'required',
                     'descriptionAr' => 'required',
                     'descriptionEn' => 'required',
                     'price' => 'required',
-                    'category_id' => 'required',
+                    'category_id' => 'nullable',
                 ]
             );
-
             if ($validateProduct->fails()) {
                 return response()->json([
                     'status' => false,
@@ -43,15 +43,18 @@ class ProductController extends Controller
                     'errors' => $validateProduct->errors()
                 ], 401);
             }
+
+            // dd($imageName);
             $product = Product::create([
                 'nameAr' => $req->nameAr,
                 'nameEn' => $req->nameEn,
-                'image' => $req->image,
+                'amount' =>  $req->amount,
                 'descriptionAr' => $req->descriptionAr,
                 'descriptionEn' => $req->descriptionEn,
                 'price' => $req->price,
                 'category_id' => $req->category_id,
             ]);
+
             return response()->json([
                 'status' => true,
                 'message' => 'Product Created Successfully',
@@ -65,37 +68,37 @@ class ProductController extends Controller
             ], 500);
         }
     }
+
     public function update(Request $req, $id)
     {
-        $validateUser = Validator::make(
+        $validateProduct = Validator::make(
             $req->all(),
             [
                 'nameAr' => 'required',
                 'nameEn' => 'required',
-                'image' => 'required',
+                'amount' => 'required',
                 'descriptionAr' => 'required',
                 'descriptionEn' => 'required',
                 'price' => 'required',
-                'category_id' => 'required',
+                'category_id' => 'nullable',
             ]
         );
-
-        if ($validateUser->fails()) {
+        if ($validateProduct->fails()) {
             return response()->json([
                 'status' => false,
                 'message' => 'validation error',
-                'errors' => $validateUser->errors()
+                'errors' => $validateProduct->errors()
             ], 401);
         }
         $product = Product::findOrFail($id);
         $product->update([
-            'nameAr' => $req->nameAr,
-            'nameEn' => $req->nameEn,
-            'image' => $req->image,
-            'descriptionAr' => $req->descriptionAr,
-            'descriptionEn' => $req->descriptionEn,
-            'price' => $req->price,
-            'category_id' => $req->category_id,
+            "nameAr" => $req->nameAr,
+            "nameEn" => $req->nameEn,
+            "amount" => $req->amount,
+            "descriptionAr" => $req->descriptionAr,
+            "descriptionEn" => $req->descriptionEn,
+            "price" => $req->price,
+            "category_id" => $req->category_id,
         ]);
         return response()->json([
             'status' => true,
