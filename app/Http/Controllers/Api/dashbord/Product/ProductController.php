@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\http\Resources\ProductResource;
+use App\Models\Image;
 
 class ProductController extends Controller
 {
@@ -109,9 +110,17 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
-        // $deleteImageProdu
-        $product->delete();
         if ($product) {
+            $deleteImageProductImages = Image::select('image')->where("product_id", $id)->get();
+
+            foreach ($deleteImageProductImages as $image) {
+                $imagePath =  $image->image;
+                $nameImageUpdate = ltrim($imagePath, url('/images/products'));
+                if ($nameImageUpdate) {
+                    unlink(public_path("images/products/") . $nameImageUpdate);
+                }
+            }
+            $product->delete();
             return response()->json([
                 'status' => true,
                 'message' => 'Product Deleted Successfully',

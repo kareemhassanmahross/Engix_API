@@ -43,12 +43,12 @@ class ImageController extends Controller
             $extention = $file->getClientOriginalExtension();
             $filename = "Image" .  time() . '.' . $extention;
             $path =  url('/images/products/' . $filename);
-            $file->move('images/products/', $filename);
         }
         $imageCreate = Image::create([
             'image' => $path,
             'product_id' => $req->product_id,
         ]);
+        $file->move('images/products/', $filename);
         return response()->json([
             'status' => true,
             'message' => 'Image Created Successfully',
