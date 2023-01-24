@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\dashbord\Product\ProductController;
 use App\Http\Controllers\Api\dashbord\Category\CategoryController;
 use App\Http\Controllers\Api\dashbord\Images\ImageController;
+use App\Http\Controllers\Api\dashbord\OurClient\OurClientController;
 use App\Http\Controllers\Api\slider\SliderController;
 use App\Http\Controllers\Api\Suppliers\SupplierController;
 
@@ -81,3 +82,10 @@ Route::POST('/slider/create', [SliderController::class, 'create']);
 Route::POST('/slider/update/{id}', [SliderController::class, 'update']);
 Route::delete('/slider/destroy/{id}', [SliderController::class, 'destroy']);
 ############################ End Route Slider ######################
+############################ Route OurClient ######################
+Route::get('/ourclients', [OurClientController::class, 'index']);
+Route::get('/ourclient/{id}', [OurClientController::class, 'show']);
+Route::POST('/ourclient/create', [OurClientController::class, 'create']);
+Route::POST('/ourclient/update/{id}', [OurClientController::class, 'update']);
+Route::delete('/ourclient/destroy/{id}', [OurClientController::class, 'destroy']);
+############################ End Route OurClient ######################
