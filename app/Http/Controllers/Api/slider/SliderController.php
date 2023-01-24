@@ -1,40 +1,38 @@
 <?php
 
-namespace App\Http\Controllers\Api\dashbord\Images;
+namespace App\Http\Controllers\Api\slider;
 
 use App\Http\Controllers\Controller;
-use App\Models\Image;
+use App\Models\Slider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class ImageController extends Controller
+class SliderController extends Controller
 {
     public function index()
     {
-        $imagesProduct = Image::get();
-        return response($imagesProduct);
+        // dd('kareem');
+        $sliderImage = Slider::get();
+        return response($sliderImage);
     }
     public function show($id)
     {
-        $imagesProduct = Image::findOrFail($id);
-        return response($imagesProduct);
+        $sliderImage = Slider::findOrFail($id);
+        return response($sliderImage);
     }
-
     public function create(Request $req)
     {
-        $ProductImage = Validator::make(
+        $sliderImage = Validator::make(
             $req->all(),
             [
                 'image' => 'required|mimes:png,jpg',
-                'product_id' => 'nullable',
             ]
         );
-        if ($ProductImage->fails()) {
+        if ($sliderImage->fails()) {
             return response()->json([
                 'status' => false,
                 'message' => 'validation error',
-                'errors' => $ProductImage->errors()
+                'errors' => $sliderImage->errors()
             ], 401);
         }
         $image = $req->image;
@@ -42,12 +40,11 @@ class ImageController extends Controller
             $file = $req->file('image');
             $extention = $file->getClientOriginalExtension();
             $filename = "Image" .  time() . '.' . $extention;
-            $path =  url('/images/products/' . $filename);
-            $file->move('images/products/', $filename);
+            $path =  url('/images/slider/' . $filename);
+            $file->move('images/slider/', $filename);
         }
-        $imageCreate = Image::create([
+        $imageCreate = Slider::create([
             'image' => $path,
-            'product_id' => $req->product_id,
         ]);
         return response()->json([
             'status' => true,
@@ -57,36 +54,34 @@ class ImageController extends Controller
     }
     public function update(Request $req, $id)
     {
-        $ProductImage = Validator::make(
+        $sliderImage = Validator::make(
             $req->all(),
             [
                 'image' => 'required|mimes:png,jpg',
-                'product_id' => 'nullable',
             ]
         );
-        if ($ProductImage->fails()) {
+        if ($sliderImage->fails()) {
             return response()->json([
                 'status' => false,
                 'message' => 'validation error',
-                'errors' => $ProductImage->errors()
+                'errors' => $sliderImage->errors()
             ], 401);
         }
-        $imageCreate = Image::findOrFail($id);
+        $imageCreate = Slider::findOrFail($id);
         $name = $imageCreate->image;
-        $nameImageUpdate = ltrim($name, url('/images/products'));
+        $nameImageUpdate = ltrim($name, url('/images/slider'));
         $imagess = $req->file("image");
         if ($imagess) {
             if ($nameImageUpdate !== null) {
-                unlink(public_path("images/products/") . $nameImageUpdate);
+                unlink(public_path("images/slider/") . $nameImageUpdate);
             }
             $image = $req->file("image");
             $nameOfNewImage = "Image" . time() . "." . $image->getClientOriginalExtension();
-            $image->move(public_path("images/products/"), $nameOfNewImage);
-            $path =  url('/images/products/' . $nameOfNewImage);
+            $image->move(public_path("images/slider/"), $nameOfNewImage);
+            $path =  url('/images/slider/' . $nameOfNewImage);
         }
         $imageCreate->update([
             'image' => $path,
-            'product_id' => $req->product_id,
         ]);
         return response()->json([
             'status' => true,
@@ -96,13 +91,13 @@ class ImageController extends Controller
     }
     public function destroy($id)
     {
-        $imageDelete = Image::findOrFail($id);
-        $imagePath =  $imageDelete->image;
-        $nameImageUpdate = ltrim($imagePath, url('/images/products'));
+        $imageCreate = Slider::findOrFail($id);
+        $imagePath =  $imageCreate->image;
+        $nameImageUpdate = ltrim($imagePath, url('/images/slider'));
         if ($nameImageUpdate) {
-            unlink(public_path("images/products/") . $nameImageUpdate);
+            unlink(public_path("/images/slider/") . $nameImageUpdate);
         }
-        $imageDelete->delete();
+        $imageCreate->delete();
         return response()->json([
             'status' => true,
             'message' => 'Image Deleted Successfully',
