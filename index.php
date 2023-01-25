@@ -51,7 +51,7 @@
 
 <script data-cfasync="false" type="text/javascript">
 // <![CDATA[
-CommonParams.setAll({common_query:"",opendb_url:"index.php?route=/database/structure",lang:"en",server:"1",table:"our_clients",db:"engix",token:"765234785865484d73665221593b2133",text_dir:"ltr",LimitChars:"50",pftext:"",confirm:true,LoginCookieValidity:"1440",session_gc_maxlifetime:"1440",logged_in:false,is_https:false,rootPath:"/phpmyadmin/",arg_separator:"&",version:"5.2.0",auth_type:"cookie",user:"root"});
+CommonParams.setAll({common_query:"",opendb_url:"index.php?route=/database/structure",lang:"en",server:"1",table:"",db:"engix",token:"5949373224627a7850687e252264663b",text_dir:"ltr",LimitChars:"50",pftext:"",confirm:true,LoginCookieValidity:"1440",session_gc_maxlifetime:"1440",logged_in:false,is_https:false,rootPath:"/phpmyadmin/",arg_separator:"&",version:"5.2.0",auth_type:"cookie",user:"root"});
 var firstDayOfCalendar = '0';
 var themeImagePath = '.\/themes\/pmahomme\/img\/';
 var mysqlDocTemplate = '.\/url.php\u003Furl\u003Dhttps\u00253A\u00252F\u00252Fdev.mysql.com\u00252Fdoc\u00252Frefman\u00252F5.7\u00252Fen\u00252F\u002525s.html';
@@ -314,7 +314,7 @@ $(function() {
       </div>
       <div class="card-body">
         <form method="get" action="index.php?route=/" class="disableAjax">
-          <input type="hidden" name="route" value="/export"><input type="hidden" name="db" value="engix"><input type="hidden" name="table" value="our_clients"><input type="hidden" name="token" value="765234785865484d73665221593b2133">
+          <input type="hidden" name="route" value="/export"><input type="hidden" name="db" value="engix"><input type="hidden" name="token" value="5949373224627a7850687e252264663b">
           <select name="lang" class="form-select autosubmit" lang="en" dir="ltr" id="languageSelect" aria-labelledby="languageSelectLabel">
                           <option value="sq">Shqip - Albanian</option>
                           <option value="ar">&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577; - Arabic</option>
@@ -366,8 +366,8 @@ $(function() {
   </div>
 
 <form method="post" id="login_form" action="index.php?route=/" name="login_form" class="disableAjax hide js-show">
-    <input type="hidden" name="route" value="/export"><input type="hidden" name="db" value="engix"><input type="hidden" name="table" value="our_clients"><input type="hidden" name="token" value="765234785865484d73665221593b2133">
-  <input type="hidden" name="set_session" value="2p21ig1llt7e9s8iho96q23csk">
+    <input type="hidden" name="route" value="/export"><input type="hidden" name="db" value="engix"><input type="hidden" name="token" value="5949373224627a7850687e252264663b">
+  <input type="hidden" name="set_session" value="7c44rmkr83femlk41i3eek2anj">
   
   <div class="card mb-4">
     <div class="card-header">
