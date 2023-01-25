@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Api\dashbord\Product\ProductController;
 use App\Http\Controllers\Api\dashbord\Category\CategoryController;
+use App\Http\Controllers\Api\dashbord\Hiring\HiringController;
 use App\Http\Controllers\Api\dashbord\Images\ImageController;
+use App\Http\Controllers\Api\dashbord\jobs\JobController;
 use App\Http\Controllers\Api\dashbord\OurClient\OurClientController;
+use App\Http\Controllers\Api\dashbord\subcategory\SubCategoryController;
 use App\Http\Controllers\Api\slider\SliderController;
 use App\Http\Controllers\Api\Suppliers\SupplierController;
-
 use Illuminate\Support\Facades\Route;
 // use LaravelLocalization;
 /*
@@ -53,6 +55,15 @@ Route::POST('/category/update/{id}', [CategoryController::class, 'update']);
 Route::delete('/category/destroy/{id}', [CategoryController::class, 'destroy']);
 
 ############################ End Route Category ######################
+############################ Route Category ######################
+
+Route::get('/subcats', [SubCategoryController::class, 'index']);
+Route::get('/subcat/{id}', [SubCategoryController::class, 'show']);
+Route::POST('/subcat/create', [SubCategoryController::class, 'create']);
+Route::POST('/subcat/update/{id}', [SubCategoryController::class, 'update']);
+Route::delete('/subcat/destroy/{id}', [SubCategoryController::class, 'destroy']);
+
+############################ End Route Category ######################
 ############################ Route Image Product ######################
 Route::get('/images', [ImageController::class, 'index']);
 Route::get('/image/{id}', [ImageController::class, 'show']);
@@ -89,3 +100,17 @@ Route::POST('/ourclient/create', [OurClientController::class, 'create']);
 Route::POST('/ourclient/update/{id}', [OurClientController::class, 'update']);
 Route::delete('/ourclient/destroy/{id}', [OurClientController::class, 'destroy']);
 ############################ End Route OurClient ######################
+############################ Route Job ######################
+Route::get('/jobs', [JobController::class, 'index']);
+Route::get('/job/{id}', [JobController::class, 'show']);
+Route::POST('/job/create', [JobController::class, 'create']);
+Route::POST('/job/update/{id}', [JobController::class, 'update']);
+Route::delete('/job/destroy/{id}', [JobController::class, 'destroy']);
+############################ End Route Job ######################
+############################ Route hiring ######################
+Route::get('/hirings', [HiringController::class, 'index']);
+Route::get('/hiring/{id}', [HiringController::class, 'show']);
+Route::POST('/hiring/create', [HiringController::class, 'create']);
+// Route::POST('/job/update/{id}', [Job::class, 'update']);
+Route::delete('/hiring/destroy/{id}', [HiringController::class, 'destroy']);
+############################ End Route hiring ######################

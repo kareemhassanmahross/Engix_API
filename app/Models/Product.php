@@ -15,7 +15,7 @@ class Product extends Model
         'amount',
         'descriptionAr',
         'descriptionEn',
-        'category_id',
+        'subCategory_id',
         'price'
     ];
     protected $hidden = ["created_at", "updated_at"];
@@ -30,8 +30,8 @@ class Product extends Model
     {
         return $this->hasMany(Image::class);
     }
-    public function catagory()
+    public function subcatagory()
     {
-        return $this->belongsTo(Category::class, "category_id", "id");
+        return $this->belongsTo(SubCategory::class, "subCategory_id", "id");
     }
 }

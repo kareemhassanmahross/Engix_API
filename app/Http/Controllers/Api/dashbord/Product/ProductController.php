@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use App\http\Resources\ProductResource;
 use App\Models\Image;
 
 class ProductController extends Controller
@@ -34,7 +32,7 @@ class ProductController extends Controller
                     'descriptionAr' => 'required',
                     'descriptionEn' => 'required',
                     'price' => 'required',
-                    'category_id' => 'nullable',
+                    'subCategory_id' => 'nullable',
                 ]
             );
             if ($validateProduct->fails()) {
@@ -53,7 +51,7 @@ class ProductController extends Controller
                 'descriptionAr' => $req->descriptionAr,
                 'descriptionEn' => $req->descriptionEn,
                 'price' => $req->price,
-                'category_id' => $req->category_id,
+                'subCategory_id' => $req->category_id,
             ]);
 
             return response()->json([

@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Api\dashbord\Category;
+namespace App\Http\Controllers\Api\dashbord\subcategory;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use Illuminate\Support\Facades\Validator;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends Controller
+
+class SubCategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::get();
+        $categories = SubCategory::get();
         return response($categories);
     }
     public function show($id)
     {
-        $category = Category::findOrFail($id);
+        $category = SubCategory::findOrFail($id);
         return response($category);
     }
     public function create(Request $req)
@@ -25,8 +26,9 @@ class CategoryController extends Controller
         $validateCategory = Validator::make(
             $req->all(),
             [
-                "categoryNameAr" => 'required',
-                "categoryNameEn" => 'required',
+                "subCategoryAr" => 'required',
+                "subCategoryEn" => 'required',
+                "category_id" => 'nullable'
             ]
         );
         if ($validateCategory->fails()) {
@@ -36,13 +38,14 @@ class CategoryController extends Controller
                 'errors' => $validateCategory->errors()
             ], 401);
         }
-        $category =  Category::create([
-            "categoryNameAr" => $req->categoryNameAr,
-            "categoryNameEn" => $req->categoryNameEn,
+        $category =  SubCategory::create([
+            "subCategoryEn" => $req->subCategoryEn,
+            "subCategoryAr" => $req->subCategoryAr,
+            "category_id" => $req->category_id,
         ]);
         return response()->json([
             'status' => true,
-            'message' => 'Category Created Successfully',
+            'message' => 'Sub Category Created Successfully',
             // 'token' => $product->createToken("API TOKEN")->plainTextToken
         ], 200);
     }
@@ -52,8 +55,9 @@ class CategoryController extends Controller
         $validateCategory = Validator::make(
             $req->all(),
             [
-                "categoryNameAr" => 'required',
-                "categoryNameEn" => 'required',
+                "subCategoryAr" => 'required',
+                "subCategoryEn" => 'required',
+                "category_id" => 'nullable'
             ]
         );
         if ($validateCategory->fails()) {
@@ -63,31 +67,32 @@ class CategoryController extends Controller
                 'errors' => $validateCategory->errors()
             ], 401);
         }
-        $category = Category::findOrFail($id);
+        $category = SubCategory::findOrFail($id);
         $category->update([
-            "categoryNameAr" => $req->categoryNameAr,
-            "categoryNameEn" => $req->categoryNameEn,
+            "subCategoryEn" => $req->subCategoryEn,
+            "subCategoryAr" => $req->subCategoryAr,
+            "category_id" => $req->category_id,
         ]);
         return response()->json([
             'status' => true,
-            'message' => 'Category Updated Successfully',
+            'message' => 'Sub Category Updated Successfully',
             // 'token' => $product->createToken("API TOKEN")->plainTextToken
         ], 200);
     }
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
+        $category = SubCategory::findOrFail($id);
         $category->delete();
         if ($category) {
             return response()->json([
                 'status' => true,
-                'message' => 'Category Deleted Successfully',
+                'message' => 'Sub Category Deleted Successfully',
                 // 'token' => $product->createToken("API TOKEN")->plainTextToken
             ], 200);
         }
         return response()->json([
             'status' => false,
-            'message' => 'Category not Deleted',
+            'message' => 'Sub Category not Deleted',
             // 'token' => $product->createToken("API TOKEN")->plainTextToken
         ], 401);
     }
