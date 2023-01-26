@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\dashbord\Images;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ImageController extends Controller

@@ -8,7 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
-    protected $fillable = ['image', 'nameEn', 'nameAr', 'titleAr', 'titleEn'];
+    protected $fillable = [
+        'nameAr',
+        'nameEn',
+        'locationAr',
+        'locationEn',
+        'image',
+        'requirmentEn',
+        'requirmentAr',
+        'descriptionEn',
+        'descriptionAr',
+        'whatYouWillDo',
+    ];
     protected $hidden = ["created_at", "updated_at"];
     public function hiring()
     {

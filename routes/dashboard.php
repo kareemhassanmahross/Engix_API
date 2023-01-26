@@ -2,13 +2,15 @@
 
 use App\Http\Controllers\Api\dashbord\Product\ProductController;
 use App\Http\Controllers\Api\dashbord\Category\CategoryController;
-use App\Http\Controllers\Api\dashbord\Hiring\HiringController;
+use App\Http\Controllers\Api\dashbord\categoyOffer\CategoyOfferController;
 use App\Http\Controllers\Api\dashbord\Images\ImageController;
 use App\Http\Controllers\Api\dashbord\jobs\JobController;
+use App\Http\Controllers\Api\dashbord\Offer\OfferController;
 use App\Http\Controllers\Api\dashbord\OurClient\OurClientController;
 use App\Http\Controllers\Api\dashbord\subcategory\SubCategoryController;
 use App\Http\Controllers\Api\slider\SliderController;
 use App\Http\Controllers\Api\Suppliers\SupplierController;
+use App\Models\CategoryOffer;
 use Illuminate\Support\Facades\Route;
 // use LaravelLocalization;
 /*
@@ -107,10 +109,17 @@ Route::POST('/job/create', [JobController::class, 'create']);
 Route::POST('/job/update/{id}', [JobController::class, 'update']);
 Route::delete('/job/destroy/{id}', [JobController::class, 'destroy']);
 ############################ End Route Job ######################
-############################ Route hiring ######################
-Route::get('/hirings', [HiringController::class, 'index']);
-Route::get('/hiring/{id}', [HiringController::class, 'show']);
-Route::POST('/hiring/create', [HiringController::class, 'create']);
-// Route::POST('/job/update/{id}', [Job::class, 'update']);
-Route::delete('/hiring/destroy/{id}', [HiringController::class, 'destroy']);
-############################ End Route hiring ######################
+############################ Route CategoryOffer ######################
+Route::get('/categoryoffers', [CategoyOfferController::class, 'index']);
+Route::get('/categoryoffer/{id}', [CategoyOfferController::class, 'show']);
+Route::POST('/categoryoffer/create', [CategoyOfferController::class, 'create']);
+Route::POST('/categoryoffer/update/{id}', [CategoyOfferController::class, 'update']);
+Route::delete('/categoryoffer/destroy/{id}', [CategoyOfferController::class, 'destroy']);
+############################ End Route CategoryOffer ######################
+############################ Route CategoryOffer ######################
+Route::get('/Offers', [OfferController::class, 'index']);
+Route::get('/offer/{id}', [OfferController::class, 'show']);
+Route::POST('/offer/create', [OfferController::class, 'create']);
+Route::POST('/offer/update/{id}', [OfferController::class, 'update']);
+Route::delete('/offer/destroy/{id}', [OfferController::class, 'destroy']);
+############################ End Route CategoryOffer ######################

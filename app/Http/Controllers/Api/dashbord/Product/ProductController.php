@@ -51,7 +51,7 @@ class ProductController extends Controller
                 'descriptionAr' => $req->descriptionAr,
                 'descriptionEn' => $req->descriptionEn,
                 'price' => $req->price,
-                'subCategory_id' => $req->category_id,
+                'subCategory_id' => $req->subCategory_id,
             ]);
 
             return response()->json([
@@ -79,7 +79,7 @@ class ProductController extends Controller
                 'descriptionAr' => 'required',
                 'descriptionEn' => 'required',
                 'price' => 'required',
-                'category_id' => 'nullable',
+                'subCategory_id' => 'nullable',
             ]
         );
         if ($validateProduct->fails()) {
@@ -97,7 +97,7 @@ class ProductController extends Controller
             "descriptionAr" => $req->descriptionAr,
             "descriptionEn" => $req->descriptionEn,
             "price" => $req->price,
-            "category_id" => $req->category_id,
+            "subCategory_id" => $req->subCategory_id,
         ]);
         return response()->json([
             'status' => true,

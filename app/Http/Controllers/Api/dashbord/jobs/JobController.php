@@ -42,8 +42,13 @@ class JobController extends Controller
                 "nameAr" => 'required',
                 "nameEn" => 'required',
                 "image" => 'required|mimes:png,jpg',
-                "titleAr" => 'required',
-                "titleEn" => 'required',
+                "locationAr" => 'required',
+                "locationEn" => 'required',
+                "requirmentEn" => 'required',
+                "requirmentAr" => 'required',
+                "descriptionEn" => 'required',
+                "descriptionAr" => 'required',
+                "whatYouWillDo" => 'required',
             ]
         );
         if ($validatejob->fails()) {
@@ -64,8 +69,13 @@ class JobController extends Controller
             "nameAr" => $req->nameAr,
             "nameEn" => $req->nameEn,
             "image" => $path,
-            "titleAr" => $req->titleAr,
-            "titleEn" => $req->titleEn,
+            "locationAr" => $req->locationAr,
+            "locationEn" => $req->locationEn,
+            "requirmentEn" => $req->requirmentEn,
+            "requirmentAr" => $req->requirmentAr,
+            "descriptionEn" => $req->descriptionEn,
+            "descriptionAr" => $req->descriptionAr,
+            "whatYouWillDo" => $req->whatYouWillDo,
         ]);
         $file->move('images/job/', $filename);
         return response()->json([
@@ -82,8 +92,13 @@ class JobController extends Controller
                 "nameAr" => 'required',
                 "nameEn" => 'required',
                 "image" => 'required|mimes:png,jpg',
-                "titleAr" => 'required',
-                "titleEn" => 'required',
+                "locationAr" => 'required',
+                "locationEn" => 'required',
+                "requirmentEn" => 'required',
+                "requirmentAr" => 'required',
+                "descriptionEn" => 'required',
+                "descriptionAr" => 'required',
+                "whatYouWillDo" => 'required',
             ]
         );
         if ($validatejob->fails()) {
@@ -110,8 +125,13 @@ class JobController extends Controller
             "nameAr" => $req->nameAr,
             "nameEn" => $req->nameEn,
             "image" => $path,
-            "titleAr" => $req->titleAr,
-            "titleEn" => $req->titleEn,
+            "locationAr" => $req->locationAr,
+            "locationEn" => $req->locationEn,
+            "requirmentEn" => $req->requirmentEn,
+            "requirmentAr" => $req->requirmentAr,
+            "descriptionEn" => $req->descriptionEn,
+            "descriptionAr" => $req->descriptionAr,
+            "whatYouWillDo" => $req->whatYouWillDo,
         ]);
         return response()->json([
             'status' => true,
@@ -123,7 +143,7 @@ class JobController extends Controller
     {
         $jobDelete = Job::findOrFail($id);
         $imagePath =  $jobDelete->image;
-        $nameImageUpdate = ltrim($imagePath, url('/images/OurClient'));
+        $nameImageUpdate = ltrim($imagePath, url('/images/job'));
         if ($nameImageUpdate) {
             unlink(public_path("images/job/") . $nameImageUpdate);
         }

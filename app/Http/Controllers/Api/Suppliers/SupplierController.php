@@ -64,12 +64,13 @@ class SupplierController extends Controller
     }
     public function update(Request $req, $id)
     {
+        dd($req);
         $validateSupliers = Validator::make(
             $req->all(),
             [
                 "nameAr" => 'required',
                 "nameEn" => 'required',
-                "image" => 'required|mimes:png,jpg'
+                // "image" => 'required|mimes:png,jpg'
             ]
         );
         if ($validateSupliers->fails()) {
