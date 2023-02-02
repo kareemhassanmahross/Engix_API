@@ -39,7 +39,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'guest'                 => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle'              => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'CheckAdmin' => \App\Http\Middleware\CheckAdnmin::class,
     ];
 }

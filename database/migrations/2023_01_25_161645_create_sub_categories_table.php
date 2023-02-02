@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('subCategoryAr');
             $table->string('subCategoryEn');
+            $table->text('desctriptionAr');
+            $table->text('desctriptionEn');
             $table->foreignId("category_id")->nullable()->constrained("categories")->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });

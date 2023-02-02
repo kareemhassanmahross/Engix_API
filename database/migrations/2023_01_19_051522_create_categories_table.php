@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('categoryNameAr');
             $table->string('categoryNameEn');
+            $table->text('desctriptionAr');
+            $table->text('desctriptionEn');
             $table->timestamps();
         });
     }

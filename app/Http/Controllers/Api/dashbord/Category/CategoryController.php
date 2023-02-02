@@ -21,12 +21,14 @@ class CategoryController extends Controller
     }
     public function create(Request $req)
     {
-
+        // dd($req);
         $validateCategory = Validator::make(
             $req->all(),
             [
                 "categoryNameAr" => 'required',
                 "categoryNameEn" => 'required',
+                "desctriptionAr" => 'required',
+                "desctriptionEn" => 'required'
             ]
         );
         if ($validateCategory->fails()) {
@@ -39,6 +41,8 @@ class CategoryController extends Controller
         $category =  Category::create([
             "categoryNameAr" => $req->categoryNameAr,
             "categoryNameEn" => $req->categoryNameEn,
+            "desctriptionAr" => $req->desctriptionAr,
+            "desctriptionEn" => $req->desctriptionEn,
         ]);
         return response()->json([
             'status' => true,
@@ -54,6 +58,8 @@ class CategoryController extends Controller
             [
                 "categoryNameAr" => 'required',
                 "categoryNameEn" => 'required',
+                "desctriptionAr" => 'required',
+                "desctriptionEn" => 'required'
             ]
         );
         if ($validateCategory->fails()) {
@@ -67,6 +73,8 @@ class CategoryController extends Controller
         $category->update([
             "categoryNameAr" => $req->categoryNameAr,
             "categoryNameEn" => $req->categoryNameEn,
+            "desctriptionAr" => $req->desctriptionAr,
+            "desctriptionEn" => $req->desctriptionEn,
         ]);
         return response()->json([
             'status' => true,

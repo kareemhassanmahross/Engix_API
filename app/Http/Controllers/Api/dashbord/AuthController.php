@@ -16,18 +16,23 @@ class AuthController extends Controller
      * @param Request $request
      * @return Admin
      */
+
+
     public function createUser(Request $request)
     {
         // dd($request);
+        // $isAdmins = Auth::guard('admin')->isAdmin;
+        // dd($isAdmins);
         try {
             // Validated
             $validateUser = Validator::make(
                 $request->all(),
                 [
-                    'name_ar' => 'required',
-                    'name_en' => 'required',
+                    'nameAr' => 'required',
+                    'nameEn' => 'required',
                     'email' => 'required|email|unique:admins,email',
-                    'password' => 'required'
+                    'password' => 'required',
+                    'isAdmin' => 'required'
                 ]
             );
 
@@ -40,10 +45,11 @@ class AuthController extends Controller
             }
 
             $user = Admin::create([
-                'name_ar' => $request->name_ar,
-                'name_en' => $request->name_en,
+                'nameAr' => $request->nameAr,
+                'nameEn' => $request->nameEn,
                 'email' => $request->email,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'isAdmin' => $request->isAdmin
             ]);
 
             return response()->json([
@@ -89,7 +95,6 @@ class AuthController extends Controller
                     'message' => 'Email & Password does not match with our record.',
                 ], 401);
             }
-
             $user = Admin::where('email', $request->email)->first();
 
             return response()->json([

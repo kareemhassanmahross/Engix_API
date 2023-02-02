@@ -64,7 +64,7 @@ class SupplierController extends Controller
     }
     public function update(Request $req, $id)
     {
-        dd($req);
+        // dd($req);
         $validateSupliers = Validator::make(
             $req->all(),
             [

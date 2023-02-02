@@ -28,6 +28,8 @@ class SubCategoryController extends Controller
             [
                 "subCategoryAr" => 'required',
                 "subCategoryEn" => 'required',
+                "desctriptionAr" => 'required',
+                "desctriptionEn" => 'required',
                 "category_id" => 'nullable'
             ]
         );
@@ -41,6 +43,8 @@ class SubCategoryController extends Controller
         $category =  SubCategory::create([
             "subCategoryEn" => $req->subCategoryEn,
             "subCategoryAr" => $req->subCategoryAr,
+            "desctriptionAr" => $req->desctriptionAr,
+            "desctriptionEn" => $req->desctriptionEn,
             "category_id" => $req->category_id,
         ]);
         return response()->json([
@@ -57,6 +61,8 @@ class SubCategoryController extends Controller
             [
                 "subCategoryAr" => 'required',
                 "subCategoryEn" => 'required',
+                "desctriptionAr" => 'required',
+                "desctriptionEn" => 'required',
                 "category_id" => 'nullable'
             ]
         );
@@ -71,6 +77,8 @@ class SubCategoryController extends Controller
         $category->update([
             "subCategoryEn" => $req->subCategoryEn,
             "subCategoryAr" => $req->subCategoryAr,
+            "desctriptionAr" => $req->desctriptionAr,
+            "desctriptionEn" => $req->desctriptionEn,
             "category_id" => $req->category_id,
         ]);
         return response()->json([

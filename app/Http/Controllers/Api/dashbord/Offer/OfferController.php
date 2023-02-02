@@ -112,7 +112,7 @@ class OfferController extends Controller
         ]);
         return response()->json([
             'status' => true,
-            'message' => 'Product Updated Successfully',
+            'message' => 'Offer Updated Successfully',
             // 'token' => $product->createToken("API TOKEN")->plainTextToken
         ], 200);
     }

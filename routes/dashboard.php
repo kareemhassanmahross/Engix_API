@@ -1,16 +1,21 @@
 <?php
 
+use App\Http\Controllers\Api\dashbord\aboutus\AboutUsController;
+use App\Http\Controllers\Api\dashbord\AuthController;
+use App\Http\Controllers\Api\dashbord\AuthUserController;
 use App\Http\Controllers\Api\dashbord\Product\ProductController;
 use App\Http\Controllers\Api\dashbord\Category\CategoryController;
 use App\Http\Controllers\Api\dashbord\categoyOffer\CategoyOfferController;
+use App\Http\Controllers\Api\dashbord\contactus\ContactUsController;
 use App\Http\Controllers\Api\dashbord\Images\ImageController;
 use App\Http\Controllers\Api\dashbord\jobs\JobController;
 use App\Http\Controllers\Api\dashbord\Offer\OfferController;
 use App\Http\Controllers\Api\dashbord\OurClient\OurClientController;
+use App\Http\Controllers\Api\dashbord\socialmedia\SocialMediaController;
 use App\Http\Controllers\Api\dashbord\subcategory\SubCategoryController;
 use App\Http\Controllers\Api\slider\SliderController;
 use App\Http\Controllers\Api\Suppliers\SupplierController;
-use App\Models\CategoryOffer;
+use App\Http\Middleware\CheckAdnmin;
 use Illuminate\Support\Facades\Route;
 // use LaravelLocalization;
 /*
@@ -24,15 +29,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 
 
+Route::POST('/auth/register', [AuthController::class, 'createUser']);
+Route::POST('/auth/login', [AuthController::class, 'loginUser']);
 
-// Route::POST('/auth/register', [\App\Http\Controllers\Api\dashbord\AuthController::class, 'createUser']);
-// Route::POST('/auth/login', [\App\Http\Controllers\Api\dashbord\AuthController::class, 'loginUser']);
 
 
 
@@ -46,10 +48,9 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
-
+// Route::middleware('auth:sanctum')->get('/user', function () {
+// Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'Admin'], function () {
 ############################ Route Category ######################
-
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/category/{id}', [CategoryController::class, 'show']);
 Route::POST('/category/create', [CategoryController::class, 'create']);
@@ -123,3 +124,26 @@ Route::POST('/offer/create', [OfferController::class, 'create']);
 Route::POST('/offer/update/{id}', [OfferController::class, 'update']);
 Route::delete('/offer/destroy/{id}', [OfferController::class, 'destroy']);
 ############################ End Route CategoryOffer ######################
+############################ Route AboutUs ######################
+Route::get('/aboutus', [AboutUsController::class, 'index']);
+Route::get('/aboutus/{id}', [AboutUsController::class, 'show']);
+Route::POST('/aboutus/create', [AboutUsController::class, 'create']);
+Route::POST('/aboutus/update/{id}', [AboutUsController::class, 'update']);
+Route::delete('/aboutus/destroy/{id}', [AboutUsController::class, 'destroy']);
+############################ End Route AboutUs ######################
+############################ Route Contact Us ######################
+Route::get('/contactus', [ContactUsController::class, 'index']);
+Route::get('/contactus/{id}', [ContactUsController::class, 'show']);
+Route::POST('/contactus/create', [ContactUsController::class, 'create']);
+Route::POST('/contactus/update/{id}', [ContactUsController::class, 'update']);
+Route::delete('/contactus/destroy/{id}', [ContactUsController::class, 'destroy']);
+############################ End Route Contact Us ######################
+############################ Route Social Media ######################
+Route::get('/socialmedia', [SocialMediaController::class, 'index']);
+Route::get('/socialmedia/{id}', [SocialMediaController::class, 'show']);
+Route::POST('/socialmedia/create', [SocialMediaController::class, 'create']);
+Route::POST('/socialmedia/update/{id}', [SocialMediaController::class, 'update']);
+Route::delete('/socialmedia/destroy/{id}', [SocialMediaController::class, 'destroy']);
+    ############################ End Route Social Media ######################
+
+// });

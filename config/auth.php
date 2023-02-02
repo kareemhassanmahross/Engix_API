@@ -44,6 +44,12 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'frontuser' => [
+            'driver' => 'sanctum',
+            'provider' => 'frontusers',
+        ]
+
+
     ],
 
     /*
@@ -68,11 +74,15 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
-        ]
-
+        ],
+        'frontusers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -101,6 +111,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        // 'users' => [
+        //     'provider' => 'admins',
+        //     'table' => 'password_resets',
+        //     'expire' => 60,
+        //     'throttle' => 60,
+        // ],
     ],
 
     /*

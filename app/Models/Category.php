@@ -11,6 +11,8 @@ class Category extends Model
     protected $fillable = [
         'categoryNameAr',
         'categoryNameEn',
+        'desctriptionAr',
+        'desctriptionEn',
     ];
     protected $hidden = ["created_at", "updated_at"];
 
