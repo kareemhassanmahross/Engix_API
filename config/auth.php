@@ -42,13 +42,23 @@ return [
             'provider' => 'users',
         ],
         'users' => [
-            'driver' => 'session',
+            'driver' => 'token',
             'provider' => 'users',
+            'hash' => true,
         ],
         'admins' => [
-            'driver' => 'session',
+            'driver' => 'token',
             'provider' => 'admins',
-        ],
+            'hash' => true,
+        ]
+        // 'users' => [
+        //     'driver' => 'session',
+        //     'provider' => 'users',
+        // ],
+        // 'admins' => [
+        //     'driver' => 'session',
+        //     'provider' => 'admins',
+        // ],
 
         // 'api' => [
         //     'driver' => 'sanctum',
@@ -129,7 +139,13 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table' => 'password_resets',
+            'table' => 'users_password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'admins_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],

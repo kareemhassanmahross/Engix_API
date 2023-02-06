@@ -16,12 +16,12 @@ use App\Http\Controllers\Api\slider\SliderController;
 use App\Http\Controllers\Api\Suppliers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'admin-dashboard'], function () {
-    Route::POST('/register', [AuthController::class, 'createUser']);
-    Route::POST('/login', [AuthController::class, 'loginUser']);
-});
+// Route::group(['prefix' => 'admin-dashboard'], function () {
+Route::POST('/register', [AuthController::class, 'createUser']);
+Route::POST('/login', [AuthController::class, 'loginUser']);
+// });
 
-Route::get('/index', [\App\Http\Controllers\ContactUsController::class, 'index']);
+// Route::get('/index', [\App\Http\Controllers\ContactUsController::class, 'index']);
 
 // Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'Admin'], function () {
 ############################ Route Category ######################
@@ -139,6 +139,6 @@ Route::get('/socialmedia/{id}', [SocialMediaController::class, 'show']);
 Route::POST('/socialmedia/create', [SocialMediaController::class, 'create']);
 Route::POST('/socialmedia/update/{id}', [SocialMediaController::class, 'update']);
 Route::delete('/socialmedia/destroy/{id}', [SocialMediaController::class, 'destroy']);
-// });
+    // });
     ############################ End Route Social Media ######################
 // });

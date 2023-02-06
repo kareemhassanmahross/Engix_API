@@ -74,7 +74,7 @@ class AuthUserController extends Controller
                     'errors' => $validateUser->errors()
                 ], 401);
             }
-            if (!Auth::attempt($request->only(['email', 'password']))) {
+            if (!Auth::gaurd('users')->attempt($request->only(['email', 'password']))) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Email & Password does not match with our record.',

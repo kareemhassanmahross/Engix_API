@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Admin extends  Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    protected $guard = 'admin';
+    protected $guard = 'admins';
     protected $fillable = [
         'nameAr',
         'nameEn',
@@ -27,15 +29,19 @@ class Admin extends  Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function hasAbility($perr)
+    protected function isAdmin(): Attribute
     {
-        $per = (array)$perr;
-        $isAdmins =  json_decode(Auth::user()->isAdmin);
-        foreach ($isAdmins as $isAdmin) {
-            if (is_array($per) && in_array($isAdmin, $per)) {
-                return true;
-            }
-            return false;
+        return Attribute::make(
+            get: fn ($value) => json_decode($value, true),
+            set: fn ($value) => json_encode($value),
+        );
+    }
+    public function hasAbility($per)
+    {
+        $isAdmins = Auth::user()->isAdmin;
+        if (is_array($isAdmins) && in_array($per, $isAdmins)) {
+            return true;
         }
+        return false;
     }
 }

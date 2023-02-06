@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 
 class ContactUsController extends Controller
 {
+
     public function index()
     {
-        if (auth()->guard('users')->check()) {
-            echo "this is User YA Kareem " . auth()->guard('users')->user()->name;
-        } elseif (auth()->guard('admins')->check()) {
-            "this is Admin YA Kareem " . auth()->guard('users')->user()->name;
+        // dd(Auth::guard('admins'));
+        if (Auth::guard('admins')) {
+            dd("this is Admin YA Kareem ");
+        } elseif (Auth::guard('users')) {
+            dd("this is Admin YA Kareem " . auth()->guard('users')->user()->name);
         }
     }
 }

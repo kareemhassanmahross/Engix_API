@@ -11,7 +11,6 @@ class SliderController extends Controller
 {
     public function index()
     {
-        // dd('kareem');
         $sliderImage = Slider::get();
         return response($sliderImage);
     }
@@ -26,6 +25,10 @@ class SliderController extends Controller
             $req->all(),
             [
                 'image' => 'required|mimes:png,jpg',
+                'nameAr' => 'required',
+                'nameEn' => 'required',
+                'descriptionAr' => 'required',
+                'descriptionEn' => 'required',
             ]
         );
         if ($sliderImage->fails()) {
@@ -44,11 +47,15 @@ class SliderController extends Controller
             $file->move('images/slider/', $filename);
         }
         $imageCreate = Slider::create([
+            'nameAr' => $req->nameAr,
+            'nameEn' => $req->nameEn,
+            'descriptionAr' => $req->descriptionAr,
+            'descriptionEn' => $req->descriptionEn,
             'image' => $path,
         ]);
         return response()->json([
             'status' => true,
-            'message' => 'Image Created Successfully',
+            'message' => 'Slider Created Successfully',
             // 'token' => $product->createToken("API TOKEN")->plainTextToken
         ], 200);
     }
@@ -58,6 +65,10 @@ class SliderController extends Controller
             $req->all(),
             [
                 'image' => 'required|mimes:png,jpg',
+                'nameAr' => 'required',
+                'nameEn' => 'required',
+                'descriptionAr' => 'required',
+                'descriptionEn' => 'required',
             ]
         );
         if ($sliderImage->fails()) {
@@ -81,11 +92,15 @@ class SliderController extends Controller
             $path =  url('/images/slider/' . $nameOfNewImage);
         }
         $imageCreate->update([
+            'nameAr' => $req->nameAr,
+            'nameEn' => $req->nameEn,
+            'descriptionAr' => $req->descriptionAr,
+            'descriptionEn' => $req->descriptionEn,
             'image' => $path,
         ]);
         return response()->json([
             'status' => true,
-            'message' => 'Image Update Successfully',
+            'message' => 'Slider Update Successfully',
             // 'token' => $product->createToken("API TOKEN")->plainTextToken
         ], 200);
     }
@@ -100,7 +115,7 @@ class SliderController extends Controller
         $imageCreate->delete();
         return response()->json([
             'status' => true,
-            'message' => 'Image Deleted Successfully',
+            'message' => 'Slider Deleted Successfully',
             // 'token' => $product->createToken("API TOKEN")->plainTextToken
         ], 200);
     }

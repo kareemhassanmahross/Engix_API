@@ -88,20 +88,23 @@ class AuthController extends Controller
                     'errors' => $validateUser->errors()
                 ], 401);
             }
-
-            if (!Auth::guard('admins')->attempt($request->only(['email', 'password']))) {
+            // dd(!Auth::attempt($request->only(['email', 'password'])));
+            // dd(Auth::guard('admins'));
+            if (!Auth::guard('admins')) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Email & Password does not match with our record.',
                 ], 401);
             }
+            // if (Admin::attempt($request->only('email', 'password'))) {
             $user = Admin::where('email', $request->email)->first();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Admin Logged In Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
-            ], 200);
+            if ($user || Hash::check($request->password, $user->password)) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Admin Logged In Successfully',
+                    'token' => $user->createToken("API TOKEN")->plainTextToken
+                ], 200);
+            }
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
