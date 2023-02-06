@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -47,4 +48,29 @@ class Handler extends ExceptionHandler
             //
         });
     }
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return response()->json(['message' => 'Unauthenticated.'], 401);
+    }
+    //     public function render($request, Exception $exception)
+    //     {
+    //         $class = get_class($exception);
+
+    //         switch ($class) {
+    //             case 'Illuminate\Auth\AuthenticationException':
+    //                 $guard = array_get($exception->guards(), 0);
+    //                 switch ($guard) {
+    //                     case 'admins':
+    //                         $login = 'admin.login';
+    //                         break;
+    //                     default:
+    //                         $login = 'login';
+    //                         break;
+    //                 }
+
+    //                 return redirect()->route($login);
+    //         }
+
+    //         return parent::render($request, $exception);
+    //     }
 }

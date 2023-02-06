@@ -28,9 +28,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
         // Passport::routes();
 
-        // Passport::tokensCan([
-        //     'user' => 'User Type',
-        //     'admin' => 'Admin User Type',
-        // ]);
+        foreach (config('permessions.permission') as $ability => $val) {
+            Gate::define($ability, function ($auth) use ($ability) {
+                return $auth->hasAbility($ability);
+            });
+        }
     }
 }

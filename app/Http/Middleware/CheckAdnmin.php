@@ -19,7 +19,9 @@ class CheckAdnmin
     {
         if (Auth::guard('admin')->check()) {
             return $next($request);
+        } elseif (Auth::guard('frontuser')->check()) {
+            return $next($request);
         }
-        return response()->json('Your account is User');
+        return response()->json('You must To create Acount ...');
     }
 }

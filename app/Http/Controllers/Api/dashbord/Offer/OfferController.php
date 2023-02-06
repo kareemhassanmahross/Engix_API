@@ -30,6 +30,7 @@ class OfferController extends Controller
                     'image' => 'required|mimes:png,jpg',
                     'descriptionAr' => 'required',
                     'descriptionEn' => 'required',
+                    'expiryDate' => 'required',
                     'category_offer_id' => 'nullable',
                 ]
             );
@@ -51,6 +52,7 @@ class OfferController extends Controller
                 'nameAr' => $req->nameAr,
                 'nameEn' => $req->nameEn,
                 'image' =>  $path,
+                'expiryDate' => $req->expiryDate,
                 'descriptionAr' => $req->descriptionAr,
                 'descriptionEn' => $req->descriptionEn,
                 'category_offer_id' => $req->category_offer_id,
@@ -79,6 +81,7 @@ class OfferController extends Controller
                 'image' => 'required|mimes:png,jpg',
                 'descriptionAr' => 'required',
                 'descriptionEn' => 'required',
+                'expiryDate' => 'required',
                 'category_offer_id' => 'nullable',
             ]
         );
@@ -108,6 +111,7 @@ class OfferController extends Controller
             'image' =>  $path,
             'descriptionAr' => $req->descriptionAr,
             'descriptionEn' => $req->descriptionEn,
+            'expiryDate' => $req->expiryDate,
             'category_offer_id' => $req->category_offer_id,
         ]);
         return response()->json([
