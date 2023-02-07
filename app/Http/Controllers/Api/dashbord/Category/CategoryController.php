@@ -11,12 +11,12 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::get();
+        $categories = Category::with('subCategory')->get();
         return response($categories);
     }
     public function show($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Category::with('subCategory')->findOrFail($id);
         return response($category);
     }
     public function create(Request $req)

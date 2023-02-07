@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\dashbord\aboutus\AboutUsController;
 use App\Http\Controllers\Api\dashbord\AuthController;
 use App\Http\Controllers\Api\dashbord\Product\ProductController;
 use App\Http\Controllers\Api\dashbord\Category\CategoryController;
+use App\Http\Controllers\Api\dashbord\categoryOurWork\categoryOurWorkController;
 use App\Http\Controllers\Api\dashbord\categoyOffer\CategoyOfferController;
 use App\Http\Controllers\Api\dashbord\contactus\ContactUsController;
 use App\Http\Controllers\Api\dashbord\Images\ImageController;
@@ -139,6 +140,14 @@ Route::get('/socialmedia/{id}', [SocialMediaController::class, 'show']);
 Route::POST('/socialmedia/create', [SocialMediaController::class, 'create']);
 Route::POST('/socialmedia/update/{id}', [SocialMediaController::class, 'update']);
 Route::delete('/socialmedia/destroy/{id}', [SocialMediaController::class, 'destroy']);
+// });
+############################ End Route Social Media ######################
+// Route::group(['middleware' => 'can:categoryOurWork'], function () {
+// Route::get('/categoryOurWork', [categoryOurWorkController::class, 'index']);
+// Route::get('/categoryOurWork/{id}', [categoryOurWorkController::class, 'show']);
+// Route::POST('/categoryOurWork/create', [categoryOurWorkController::class, 'create']);
+// Route::POST('/categoryOurWork/update/{id}', [categoryOurWorkController::class, 'update']);
+// Route::delete('/categoryOurWork/destroy/{id}', [categoryOurWorkController::class, 'destroy']);
     // });
     ############################ End Route Social Media ######################
 // });
