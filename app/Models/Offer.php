@@ -14,7 +14,7 @@ class Offer extends Model
         'image',
         'descriptionAr',
         'descriptionEn',
-        'expiryDate',
+        'expiresDate',
         'category_offer_id'
     ];
     public function categoryOffer()

@@ -49,16 +49,16 @@ class SupplierController extends Controller
             $extention = $file->getClientOriginalExtension();
             $filename = "Image" .  time() . '.' . $extention;
             $path =  url('/images/suppliser/' . $filename);
+            $Supplier = Supplier::create([
+                "nameAr" => $req->nameAr,
+                "nameEn" => $req->nameEn,
+                "image" => $path,
+            ]);
             $file->move('images/suppliser/', $filename);
         }
-        $Supplier = Supplier::create([
-            "nameAr" => $req->nameAr,
-            "nameEn" => $req->nameEn,
-            "image" => $path,
-        ]);
         return response()->json([
             'status' => true,
-            'message' => 'Image Uploaded Successfully',
+            'message' => 'Supplier Created  Successfully',
             // 'token' => $product->createToken("API TOKEN")->plainTextToken
         ], 200);
     }
@@ -90,17 +90,17 @@ class SupplierController extends Controller
             }
             $image = $req->file("image");
             $nameOfNewImage = "Image" . time() . "." . $image->getClientOriginalExtension();
-            $image->move(public_path("images/suppliser/"), $nameOfNewImage);
             $path =  url('images/suppliser/' . $nameOfNewImage);
+            $suppliersimage->update([
+                "nameAr" => $req->nameAr,
+                "nameEn" => $req->nameEn,
+                "image" => $path,
+            ]);
+            $image->move(public_path("images/suppliser/"), $nameOfNewImage);
         }
-        $suppliersimage->update([
-            "nameAr" => $req->nameAr,
-            "nameEn" => $req->nameEn,
-            "image" => $path,
-        ]);
         return response()->json([
             'status' => true,
-            'message' => 'Image Updated Successfully',
+            'message' => 'Supplier Updated Successfully',
             // 'token' => $product->createToken("API TOKEN")->plainTextToken
         ], 200);
     }
