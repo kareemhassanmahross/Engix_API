@@ -41,7 +41,7 @@ class AuthUserController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Acouunt ' . $user->name . ' Created Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
+                'token' => $user->createToken("User API TOKEN " . $request->email)->plainTextToken
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -74,20 +74,20 @@ class AuthUserController extends Controller
                     'errors' => $validateUser->errors()
                 ], 401);
             }
-            if (!Auth::gaurd('users')->attempt($request->only(['email', 'password']))) {
+            if (!Auth::guard('users')) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Email & Password does not match with our record.',
                 ], 401);
             }
-
             $user = User::where('email', $request->email)->first();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'User Logged In Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
-            ], 200);
+            if ($user || Hash::check($request->password, $user->password)) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'User Logged In Successfully',
+                    'token' => $user->createToken("User API TOKEN " . $request->email)->plainTextToken
+                ], 200);
+            }
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,

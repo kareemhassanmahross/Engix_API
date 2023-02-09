@@ -22,7 +22,7 @@ Route::POST('/register', [AuthController::class, 'createUser']);
 Route::POST('/login', [AuthController::class, 'loginUser']);
 // });
 
-// Route::get('/index', [\App\Http\Controllers\ContactUsController::class, 'index']);
+Route::get('/index', [\App\Http\Controllers\ContactUsController::class, 'index']);
 
 // Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'Admin'], function () {
 ############################ Route Category ######################
@@ -143,11 +143,11 @@ Route::delete('/socialmedia/destroy/{id}', [SocialMediaController::class, 'destr
 // });
 ############################ End Route Social Media ######################
 // Route::group(['middleware' => 'can:categoryOurWork'], function () {
-// Route::get('/categoryOurWork', [categoryOurWorkController::class, 'index']);
-// Route::get('/categoryOurWork/{id}', [categoryOurWorkController::class, 'show']);
-// Route::POST('/categoryOurWork/create', [categoryOurWorkController::class, 'create']);
-// Route::POST('/categoryOurWork/update/{id}', [categoryOurWorkController::class, 'update']);
-// Route::delete('/categoryOurWork/destroy/{id}', [categoryOurWorkController::class, 'destroy']);
+Route::get('/categoryOurWork', [categoryOurWorkController::class, 'index']);
+Route::get('/categoryOurWork/{id}', [categoryOurWorkController::class, 'show']);
+Route::POST('/categoryOurWork/create', [categoryOurWorkController::class, 'create']);
+Route::POST('/categoryOurWork/update/{id}', [categoryOurWorkController::class, 'update']);
+Route::delete('/categoryOurWork/destroy/{id}', [categoryOurWorkController::class, 'destroy']);
     // });
     ############################ End Route Social Media ######################
 // });

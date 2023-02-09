@@ -39,6 +39,8 @@ class AboutUsController extends Controller
                     'ourVisionEn' => 'required',
                     'ourMissionAr' => 'required',
                     'ourMissionEn' => 'required',
+                    'locationAr' => 'required',
+                    'locationEn' => 'required',
                 ]
             );
             if ($validateAboutUs->fails()) {
@@ -63,6 +65,8 @@ class AboutUsController extends Controller
                 'ourVisionEn' => $req->ourVisionEn,
                 'ourMissionAr' => $req->ourMissionAr,
                 'ourMissionEn' => $req->ourMissionEn,
+                'locationAr' => $req->locationAr,
+                'locationEn' => $req->locationEn,
             ]);
             $image->move(public_path("images/AboutUs/"), $filename);
             return response()->json([
@@ -90,6 +94,8 @@ class AboutUsController extends Controller
                 'ourVisionEn' => 'required',
                 'ourMissionAr' => 'required',
                 'ourMissionEn' => 'required',
+                'locationAr' => 'required',
+                'locationEn' => 'required',
             ]
         );
         if ($validateAboutUs->fails()) {
@@ -120,6 +126,8 @@ class AboutUsController extends Controller
             'ourVisionEn' => $req->ourVisionEn,
             'ourMissionAr' => $req->ourMissionAr,
             'ourMissionEn' => $req->ourMissionEn,
+            'locationAr' => $req->locationAr,
+            'locationEn' => $req->locationEn,
         ]);
         return response()->json([
             'status' => true,

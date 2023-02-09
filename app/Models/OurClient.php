@@ -8,6 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class OurClient extends Model
 {
     use HasFactory;
-    protected $fillable = ['image', 'nameEn', 'nameAr'];
-    protected $hidden = ["created_at", "updated_at"];
+    protected $fillable = [
+        'image',
+        'nameEn',
+        'nameAr',
+        'category_our_work_id'
+    ];
+    protected $hidden = [
+        "created_at",
+        "updated_at"
+    ];
+    public function categoryOurWork()
+    {
+        return $this->belongsTo(categoryOurWork::class, "category_our_work_id", "id");
+    }
 }

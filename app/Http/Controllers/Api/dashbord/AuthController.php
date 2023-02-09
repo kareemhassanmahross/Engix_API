@@ -89,14 +89,13 @@ class AuthController extends Controller
                 ], 401);
             }
             // dd(!Auth::attempt($request->only(['email', 'password'])));
-            // dd(Auth::guard('admins'));
-            if (!Auth::guard('admins')) {
+
+            if (!auth()->guard('admins')) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Email & Password does not match with our record.',
                 ], 401);
             }
-            // if (Admin::attempt($request->only('email', 'password'))) {
             $user = Admin::where('email', $request->email)->first();
             if ($user || Hash::check($request->password, $user->password)) {
                 return response()->json([

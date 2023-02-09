@@ -14,7 +14,7 @@ class ContactUsController extends Controller
         if (Auth::guard('admins')) {
             dd("this is Admin YA Kareem ");
         } elseif (Auth::guard('users')) {
-            dd("this is Admin YA Kareem " . auth()->guard('users')->user()->name);
+            dd("this is User YA Kareem ");
         }
     }
 }

@@ -42,14 +42,12 @@ return [
             'provider' => 'users',
         ],
         'users' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'users',
-            'hash' => true,
         ],
         'admins' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'admins',
-            'hash' => true,
         ]
         // 'users' => [
         //     'driver' => 'session',

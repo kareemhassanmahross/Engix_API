@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('ourVisionEn');
             $table->string('ourMissionAr');
             $table->string('ourMissionEn');
+            $table->string('locationAr');
+            $table->string('locationEn');
             $table->timestamps();
         });
     }

@@ -17,6 +17,8 @@ class AboutUs extends Model
         'ourVisionEn',
         'ourMissionAr',
         'ourMissionEn',
+        'locationAr',
+        'locationEn'
     ];
     protected $hidden = [
         'created_at',

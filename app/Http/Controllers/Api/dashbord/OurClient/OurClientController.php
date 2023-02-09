@@ -33,7 +33,8 @@ class OurClientController extends Controller
             [
                 "nameAr" => 'required',
                 "nameEn" => 'required',
-                "image" => 'required|mimes:png,jpg'
+                "image" => 'required|mimes:png,jpg',
+                "category_our_work_id" => 'required|exists:category_our_works,id'
             ]
         );
         if ($validateOurClient->fails()) {
@@ -54,6 +55,7 @@ class OurClientController extends Controller
             "nameAr" => $req->nameAr,
             "nameEn" => $req->nameEn,
             "image" => $path,
+            "category_our_work_id" => $req->category_our_work_id,
         ]);
         $file->move('images/OurClient/', $filename);
         return response()->json([
@@ -69,7 +71,8 @@ class OurClientController extends Controller
             [
                 "nameAr" => 'required',
                 "nameEn" => 'required',
-                "image" => 'required|mimes:png,jpg'
+                "image" => 'required|mimes:png,jpg',
+                "category_our_work_id" => 'required|exists:category_our_works,id'
             ]
         );
         if ($validateSupliers->fails()) {
@@ -96,6 +99,7 @@ class OurClientController extends Controller
             "nameAr" => $req->nameAr,
             "nameEn" => $req->nameEn,
             "image" => $path,
+            "category_our_work_id" => $req->category_our_work_id,
         ]);
         return response()->json([
             'status' => true,
