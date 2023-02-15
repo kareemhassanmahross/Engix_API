@@ -6,9 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\categoryOurWork;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class categoryOurWorkController extends Controller
 {
+    public function __construct()
+    {
+        if (Auth::guard('admins')->check()) {
+            $this->middleware('auth:sanctum');
+            $this->middleware('can:categoryOurWork');
+        } else {
+            // $this->middleware('auth:sanctum');
+        }
+    }
     public function index()
     {
         $categoryOurWork = categoryOurWork::with('OurClient')->get();

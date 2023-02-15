@@ -3,15 +3,45 @@
 namespace App\Http\Controllers\Api\dashbord\Offer;
 
 use App\Http\Controllers\Controller;
+use App\Models\CategoryOffer;
 use App\Models\Offer;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class OfferController extends Controller
 {
+    public function __construct()
+    {
+        if (Auth::guard('admins')->check()) {
+            $this->middleware('auth:sanctum');
+            $this->middleware('can:Offers');
+        } else {
+            // $this->middleware('auth:sanctum');
+        }
+    }
     public function index()
     {
         $offers = Offer::with('categoryOffer')->get();
+        // $arra = [];
+        // foreach ($offers as $offer) {
+        //     $Offer = [
+        //         'nameAr' => $offer->nameAr,
+        //         'nameEn' => $offer->nameEn,
+        //         'image' => $offer->image,
+        //         'descriptionAr' => $offer->descriptionAr,
+        //         'descriptionEn' => $offer->descriptionEn,
+        //         'expiresDate' => $offer->expiresDate,
+        //         'category_offer_id' => $offer->category_offer_id,
+        //         'created_at' => $offer->created_at->format('m/d/Y'),
+        //         'updated_at' => Carbon::now($offer->updated_at),
+        //         'category_offer' => CategoryOffer::select('nameAr', 'nameEn')->where('id', "=", $offer->category_offer_id)->get(),
+        //     ];
+        //     array_push($arra, $Offer);
+        // }
+        // $X = Carbon::now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s');
+        // dd($X);
         return response($offers);
     }
     public function show($id)
@@ -56,6 +86,8 @@ class OfferController extends Controller
                 'descriptionAr' => $req->descriptionAr,
                 'descriptionEn' => $req->descriptionEn,
                 'category_offer_id' => $req->category_offer_id,
+                // 'created_at' => Carbon::now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s'),
+                // 'updated_at' => Carbon::now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s'),
             ]);
             $image->move(public_path("images/Offer/"), $filename);
             return response()->json([

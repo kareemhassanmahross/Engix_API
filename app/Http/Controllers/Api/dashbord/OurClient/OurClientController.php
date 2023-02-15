@@ -5,10 +5,20 @@ namespace App\Http\Controllers\Api\dashbord\OurClient;
 use App\Http\Controllers\Controller;
 use App\Models\OurClient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class OurClientController extends Controller
 {
+    public function __construct()
+    {
+        if (Auth::guard('admins')->check()) {
+            $this->middleware('auth:sanctum');
+            $this->middleware('can:ourclients');
+        } else {
+            // $this->middleware('auth:sanctum');
+        }
+    }
     public function index()
     {
         $ourClients = OurClient::get();

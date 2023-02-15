@@ -13,6 +13,7 @@ class SubCategory extends Model
         "subCategoryEn",
         'desctriptionAr',
         'desctriptionEn',
+        'image',
         "category_id"
     ];
     protected $hidden = ['created_at', 'updated_at'];

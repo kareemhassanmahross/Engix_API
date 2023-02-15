@@ -5,10 +5,20 @@ namespace App\Http\Controllers\Api\dashbord\categoyOffer;
 use App\Http\Controllers\Controller;
 use App\Models\CategoryOffer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class CategoyOfferController extends Controller
 {
+    public function __construct()
+    {
+        if (Auth::guard('admins')->check()) {
+            $this->middleware('auth:sanctum');
+            $this->middleware('can:categoryoffers');
+        } else {
+            // $this->middleware('auth:sanctum');
+        }
+    }
     public function index()
     {
         $categoryOffers = CategoryOffer::with('offer')->get();

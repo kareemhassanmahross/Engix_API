@@ -5,10 +5,20 @@ namespace App\Http\Controllers\Api\dashbord\Images;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ImageController extends Controller
 {
+    public function __construct()
+    {
+        if (Auth::guard('admins')->check()) {
+            $this->middleware('auth:sanctum');
+            $this->middleware('can:images');
+        } else {
+            // $this->middleware('auth:sanctum');
+        }
+    }
     public function index()
     {
         $imagesProduct = Image::get();

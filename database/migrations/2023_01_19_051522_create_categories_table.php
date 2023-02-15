@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('categoryNameEn');
             $table->text('desctriptionAr');
             $table->text('desctriptionEn');
+            $table->binary('image');
             $table->timestamps();
         });
     }

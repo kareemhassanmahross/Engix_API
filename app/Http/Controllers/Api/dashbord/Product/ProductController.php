@@ -3,16 +3,27 @@
 namespace App\Http\Controllers\Api\dashbord\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Image;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        if (Auth::guard('admins')->check()) {
+            $this->middleware('auth:sanctum');
+            $this->middleware('can:products');
+        } else {
+            // $this->middleware('auth:sanctum');
+        }
+    }
     public function index()
     {
-        $products = Product::with('images')->get();
+        $products = Product::with('subcatagory')->with('images')->get();
         return response($products);
     }
     public function show($id)
@@ -32,7 +43,7 @@ class ProductController extends Controller
                     'descriptionAr' => 'required',
                     'descriptionEn' => 'required',
                     'price' => 'required',
-                    'subCategory_id' => 'nullable',
+                    'sub_category_id' => 'nullable',
                 ]
             );
             if ($validateProduct->fails()) {
@@ -51,7 +62,7 @@ class ProductController extends Controller
                 'descriptionAr' => $req->descriptionAr,
                 'descriptionEn' => $req->descriptionEn,
                 'price' => $req->price,
-                'subCategory_id' => $req->subCategory_id,
+                'sub_category_id' => $req->sub_category_id,
             ]);
 
             return response()->json([
@@ -79,7 +90,7 @@ class ProductController extends Controller
                 'descriptionAr' => 'required',
                 'descriptionEn' => 'required',
                 'price' => 'required',
-                'subCategory_id' => 'nullable',
+                'sub_category_id' => 'required',
             ]
         );
         if ($validateProduct->fails()) {
@@ -97,7 +108,7 @@ class ProductController extends Controller
             "descriptionAr" => $req->descriptionAr,
             "descriptionEn" => $req->descriptionEn,
             "price" => $req->price,
-            "subCategory_id" => $req->subCategory_id,
+            "sub_category_id" => $req->sub_category_id,
         ]);
         return response()->json([
             'status' => true,

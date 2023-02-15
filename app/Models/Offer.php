@@ -17,6 +17,7 @@ class Offer extends Model
         'expiresDate',
         'category_offer_id'
     ];
+
     public function categoryOffer()
     {
         return $this->belongsTo(CategoryOffer::class, 'category_offer_id', 'id');

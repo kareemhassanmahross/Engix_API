@@ -76,7 +76,7 @@ class AuthController extends Controller
             $validateUser = Validator::make(
                 $request->all(),
                 [
-                    'email' => 'required|email',
+                    'email' => 'required|exists:admins',
                     'password' => 'required'
                 ]
             );
@@ -88,9 +88,8 @@ class AuthController extends Controller
                     'errors' => $validateUser->errors()
                 ], 401);
             }
-            // dd(!Auth::attempt($request->only(['email', 'password'])));
-
-            if (!auth()->guard('admins')) {
+            // dd(Auth::guard('admins')->attempt($request->only(['email', 'password'])));
+            if (!Auth::guard('admins')) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Email & Password does not match with our record.',

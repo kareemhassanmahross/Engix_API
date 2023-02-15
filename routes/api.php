@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\dashbord\AuthUserController;
 use Illuminate\Support\Facades\Route;
 
 
-
-Route::POST('/user/register', [AuthUserController::class, 'createUser']);
-Route::POST('/user/login', [AuthUserController::class, 'loginUser']);
+Route::group(['prefix' => 'user'], function () {
+    Route::POST('/register', [AuthUserController::class, 'createUser']);
+    Route::POST('/login', [AuthUserController::class, 'loginUser']);
+});
