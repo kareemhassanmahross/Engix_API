@@ -32,7 +32,7 @@ class SubCategoryController extends Controller
     }
     public function create(Request $req)
     {
-
+        // dd('kareem');
         $validateCategory = Validator::make(
             $req->all(),
             [

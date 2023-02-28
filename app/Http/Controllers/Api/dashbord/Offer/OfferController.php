@@ -23,30 +23,16 @@ class OfferController extends Controller
     }
     public function index()
     {
+        // $offers = Offer::where('expiresDate', '>', Carbon::now()->timezone('Africa/Cairo'))->with('categoryOffer')->get();
+
         $offers = Offer::with('categoryOffer')->get();
-        // $arra = [];
-        // foreach ($offers as $offer) {
-        //     $Offer = [
-        //         'nameAr' => $offer->nameAr,
-        //         'nameEn' => $offer->nameEn,
-        //         'image' => $offer->image,
-        //         'descriptionAr' => $offer->descriptionAr,
-        //         'descriptionEn' => $offer->descriptionEn,
-        //         'expiresDate' => $offer->expiresDate,
-        //         'category_offer_id' => $offer->category_offer_id,
-        //         'created_at' => $offer->created_at->format('m/d/Y'),
-        //         'updated_at' => Carbon::now($offer->updated_at),
-        //         'category_offer' => CategoryOffer::select('nameAr', 'nameEn')->where('id', "=", $offer->category_offer_id)->get(),
-        //     ];
-        //     array_push($arra, $Offer);
-        // }
-        // $X = Carbon::now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s');
-        // dd($X);
         return response($offers);
     }
     public function show($id)
     {
         $offer = Offer::findOrFail($id);
+        // return response($offer->created_at->format('Y-m-d H:i:s'));
+        // dd($offer->expiresDate, $offer->created_at->format('Y-m-d H:i:s'));
         return response($offer);
     }
     public function create(Request $req)
@@ -82,12 +68,12 @@ class OfferController extends Controller
                 'nameAr' => $req->nameAr,
                 'nameEn' => $req->nameEn,
                 'image' =>  $path,
-                'expiresDate' => $req->expiresDate,
+                'expiresDate' => Carbon::now()->addDays($req->expiresDate)->timezone('Africa/Cairo')->format('Y-m-d H:i:s'),
                 'descriptionAr' => $req->descriptionAr,
                 'descriptionEn' => $req->descriptionEn,
                 'category_offer_id' => $req->category_offer_id,
-                // 'created_at' => Carbon::now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s'),
-                // 'updated_at' => Carbon::now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s'),
+                'created_at' => Carbon::now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s'),
             ]);
             $image->move(public_path("images/Offer/"), $filename);
             return response()->json([

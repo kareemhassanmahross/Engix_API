@@ -18,8 +18,8 @@ class OurClient extends Model
         "created_at",
         "updated_at"
     ];
-    public function categoryOurWork()
-    {
-        return $this->belongsTo(categoryOurWork::class, "category_our_work_id", "id");
-    }
+    // public function categoryOurWork()
+    // {
+    //     return $this->belongsTo(categoryOurWork::class, "category_our_work_id", "id");
+    // }
 }

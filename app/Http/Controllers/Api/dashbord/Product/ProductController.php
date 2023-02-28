@@ -23,7 +23,7 @@ class ProductController extends Controller
     }
     public function index()
     {
-        $products = Product::with('subcatagory')->with('images')->get();
+        $products = Product::with('images')->get();
         return response($products);
     }
     public function show($id)

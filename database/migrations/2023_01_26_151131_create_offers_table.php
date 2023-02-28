@@ -20,10 +20,11 @@ return new class extends Migration
             $table->binary('image');
             $table->text('descriptionAr');
             $table->text('descriptionEn');
-            $table->integer('expiresDate');
+            $table->timestamp('expiresDate', 6);
             $table->foreignId('category_offer_id')->nullable()->constrained('category_offers')
                 ->cascadeOnUpdate()->cascadeOnDelete();
-            $table->timestamps();
+            $table->timestamp('created_at', 6)->nullable();
+            $table->timestamp('updated_at', 6)->nullable();
         });
     }
 

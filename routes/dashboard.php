@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\dashbord\Images\ImageController;
 use App\Http\Controllers\Api\dashbord\jobs\JobController;
 use App\Http\Controllers\Api\dashbord\Offer\OfferController;
 use App\Http\Controllers\Api\dashbord\OurClient\OurClientController;
+use App\Http\Controllers\Api\dashbord\OurWork\OurWorkController;
 use App\Http\Controllers\Api\dashbord\socialmedia\SocialMediaController;
 use App\Http\Controllers\Api\dashbord\subcategory\SubCategoryController;
 use App\Http\Controllers\Api\slider\SliderController;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin-dashboard'], function () {
     Route::POST('/register', [AuthController::class, 'createUser']);
     Route::POST('/login', [AuthController::class, 'loginUser']);
+    Route::POST('/logout', [AuthController::class, 'logoutUser'])->middleware('auth:sanctum');
 });
 ############################ Route Category ######################
 Route::group(['prefix' => 'categories'], function () {
@@ -137,7 +139,7 @@ Route::group(['prefix' => 'socialmedia'], function () {
     Route::POST('/update/{id}', [SocialMediaController::class, 'update']);
     Route::delete('/destroy/{id}', [SocialMediaController::class, 'destroy']);
 });
-############################ End Route Social Media ######################
+############################ End Route category OurWork ######################
 Route::group(['prefix' => 'categoryOurWork'], function () {
     Route::get('/', [categoryOurWorkController::class, 'index']);
     Route::get('/{id}', [categoryOurWorkController::class, 'show']);
@@ -145,4 +147,13 @@ Route::group(['prefix' => 'categoryOurWork'], function () {
     Route::POST('/update/{id}', [categoryOurWorkController::class, 'update']);
     Route::delete('/destroy/{id}', [categoryOurWorkController::class, 'destroy']);
 });
-    ############################ End Route Social Media ######################
+############################ End Route category OurWork ######################
+############################ End Route  OurWork ######################
+Route::group(['prefix' => 'ourWork'], function () {
+    Route::get('/', [OurWorkController::class, 'index']);
+    Route::get('/{id}', [OurWorkController::class, 'show']);
+    Route::POST('/create', [OurWorkController::class, 'create']);
+    Route::POST('/update/{id}', [OurWorkController::class, 'update']);
+    Route::delete('/destroy/{id}', [OurWorkController::class, 'destroy']);
+});
+############################ End Route  OurWork ######################

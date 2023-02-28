@@ -16,8 +16,8 @@ class categoryOurWork extends Model
         'created_at',
         'updated_at'
     ];
-    public function OurClient()
+    public function OurWork()
     {
-        return $this->hasMany(OurClient::class);
+        return $this->hasMany(OurWork::class);
     }
 }

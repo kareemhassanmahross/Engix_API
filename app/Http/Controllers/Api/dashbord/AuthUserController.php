@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class AuthUserController extends Controller
 {
@@ -19,7 +20,8 @@ class AuthUserController extends Controller
             $validateUser = Validator::make(
                 $request->all(),
                 [
-                    'name' => 'required',
+                    'nameAr' => 'required',
+                    'nameEn' => 'required',
                     'email' => 'required|email|unique:users,email',
                     'password' => 'required'
                 ]
@@ -33,15 +35,16 @@ class AuthUserController extends Controller
                 ], 401);
             }
             $user = User::create([
-                'name' => $request->name,
+                'nameAr' => $request->nameAr,
+                'nameEn' => $request->nameEn,
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
             ]);
 
             return response()->json([
                 'status' => true,
-                'message' => 'Acouunt ' . $user->name . ' Created Successfully',
-                'token' => $user->createToken("User API TOKEN " . $request->email)->plainTextToken
+                'message' => 'Acouunt ' . $user->email . ' Created Successfully',
+                'token' => $user->createToken("API TOKEN_Register_User " . $request->email)->plainTextToken
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -94,5 +97,14 @@ class AuthUserController extends Controller
                 'message' => $th->getMessage()
             ], 500);
         }
+    }
+    public function logoutUser(Request $req)
+    {
+        // auth()->user()->Passport::tokensExpireIn(Carbon::now()->addDays(15));
+        $req->user()->currentAccessToken()->delete();
+        return response()->json([
+            'status' => true,
+            'message' => 'logged out successfully',
+        ], 200);
     }
 }

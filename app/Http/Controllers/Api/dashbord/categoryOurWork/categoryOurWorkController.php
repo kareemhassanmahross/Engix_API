@@ -21,7 +21,7 @@ class categoryOurWorkController extends Controller
     }
     public function index()
     {
-        $categoryOurWork = categoryOurWork::with('OurClient')->get();
+        $categoryOurWork = categoryOurWork::with('OurWork')->get();
         if ($categoryOurWork->count() == 0) {
             return response()->json([
                 'status' => true,

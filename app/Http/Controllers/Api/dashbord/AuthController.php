@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -54,8 +55,8 @@ class AuthController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => 'Admin Created Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
+                'message' => 'Admin Created' . $request->email . 'Successfully',
+                'token' => $user->createToken("API TOKEN_Register_Admin " . $request->email)->plainTextToken
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -109,5 +110,13 @@ class AuthController extends Controller
                 'message' => $th->getMessage()
             ], 500);
         }
+    }
+    public function logoutUser(Request $req)
+    {
+        $req->user()->currentAccessToken()->delete();
+        return response()->json([
+            'status' => true,
+            'message' => 'logged out successfully',
+        ], 200);
     }
 }
