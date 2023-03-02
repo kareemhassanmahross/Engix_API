@@ -14,6 +14,7 @@ class Category extends Model
         'desctriptionAr',
         'desctriptionEn',
         'image',
+        'prand'
     ];
     protected $hidden = ["created_at", "updated_at"];
 

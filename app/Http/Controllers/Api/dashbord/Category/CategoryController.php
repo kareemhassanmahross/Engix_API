@@ -39,6 +39,7 @@ class CategoryController extends Controller
                 "categoryNameEn" => 'required',
                 "desctriptionAr" => 'required',
                 "desctriptionEn" => 'required',
+                "prand" => 'required',
                 'image' => 'required|mimes:png,jpg',
             ]
         );
@@ -61,6 +62,7 @@ class CategoryController extends Controller
             "categoryNameEn" => $req->categoryNameEn,
             "desctriptionAr" => $req->desctriptionAr,
             "desctriptionEn" => $req->desctriptionEn,
+            'prand' => $req->prand,
             'image' => $path,
         ]);
         $file->move('images/category/', $filename);
@@ -79,6 +81,7 @@ class CategoryController extends Controller
                 "categoryNameEn" => 'required',
                 "desctriptionAr" => 'required',
                 "desctriptionEn" => 'required',
+                "prand" => 'required',
                 'image' => 'required|mimes:png,jpg',
             ]
         );
@@ -106,6 +109,7 @@ class CategoryController extends Controller
             "categoryNameEn" => $req->categoryNameEn,
             "desctriptionAr" => $req->desctriptionAr,
             "desctriptionEn" => $req->desctriptionEn,
+            "prand" => $req->prand,
             'image' => $path,
         ]);
         $image->move(public_path("images/category/"), $nameOfNewImage);
