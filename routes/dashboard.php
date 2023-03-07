@@ -5,19 +5,25 @@ use App\Http\Controllers\Api\dashbord\AuthController;
 use App\Http\Controllers\Api\dashbord\Product\ProductController;
 use App\Http\Controllers\Api\dashbord\Category\CategoryController;
 use App\Http\Controllers\Api\dashbord\categoryOurWork\categoryOurWorkController;
+use App\Http\Controllers\Api\dashbord\CategoryProgram\CategoryProgramController;
 use App\Http\Controllers\Api\dashbord\categoyOffer\CategoyOfferController;
 use App\Http\Controllers\Api\dashbord\contactus\ContactUsController;
 use App\Http\Controllers\Api\dashbord\Images\ImageController;
 use App\Http\Controllers\Api\dashbord\jobs\JobController;
+use App\Http\Controllers\Api\dashbord\Meduol\MeduolController;
 use App\Http\Controllers\Api\dashbord\Offer\OfferController;
 use App\Http\Controllers\Api\dashbord\OurClient\OurClientController;
 use App\Http\Controllers\Api\dashbord\OurWork\OurWorkController;
+use App\Http\Controllers\Api\dashbord\Program\ProgramsController;
 use App\Http\Controllers\Api\dashbord\socialmedia\SocialMediaController;
 use App\Http\Controllers\Api\dashbord\subcategory\SubCategoryController;
+use App\Http\Controllers\Api\dashbord\SubCategoryProgram\SubCategoryProgramController;
 use App\Http\Controllers\Api\slider\SliderController;
 use App\Http\Controllers\Api\Suppliers\SupplierController;
+use App\Models\SubCategoryProgram;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/cd', [App\Http\Controllers\ContactUsController::class, 'index']);
 Route::group(['prefix' => 'admin-dashboard'], function () {
     Route::POST('/register', [AuthController::class, 'createUser']);
     Route::POST('/login', [AuthController::class, 'loginUser']);
@@ -157,3 +163,39 @@ Route::group(['prefix' => 'ourWork'], function () {
     Route::delete('/destroy/{id}', [OurWorkController::class, 'destroy']);
 });
 ############################ End Route  OurWork ######################
+############################ End Route  CategoryProgram ######################
+Route::group(['prefix' => 'CategoryProgram'], function () {
+    Route::get('/', [CategoryProgramController::class, 'index']);
+    Route::get('/{id}', [CategoryProgramController::class, 'show']);
+    Route::POST('/create', [CategoryProgramController::class, 'create']);
+    Route::POST('/update/{id}', [CategoryProgramController::class, 'update']);
+    Route::delete('/destroy/{id}', [CategoryProgramController::class, 'destroy']);
+});
+############################ End Route  CategoryProgram ######################
+############################ End Route  SubCategoryProgram ######################
+Route::group(['prefix' => 'SubCategoryProgram'], function () {
+    Route::get('/', [SubCategoryProgramController::class, 'index']);
+    Route::get('/{id}', [SubCategoryProgramController::class, 'show']);
+    Route::POST('/create', [SubCategoryProgramController::class, 'create']);
+    Route::POST('/update/{id}', [SubCategoryProgramController::class, 'update']);
+    Route::delete('/destroy/{id}', [SubCategoryProgramController::class, 'destroy']);
+});
+############################ End Route  SubCategoryProgram ######################
+############################ End Route  SubCategoryProgram ######################
+Route::group(['prefix' => 'Program'], function () {
+    Route::get('/', [ProgramsController::class, 'index']);
+    Route::get('/{id}', [ProgramsController::class, 'show']);
+    Route::POST('/create', [ProgramsController::class, 'create']);
+    Route::POST('/update/{id}', [ProgramsController::class, 'update']);
+    Route::delete('/destroy/{id}', [ProgramsController::class, 'destroy']);
+});
+############################ End Route  SubCategoryProgram ######################
+############################ End Route  SubCategoryProgram ######################
+Route::group(['prefix' => 'Medule'], function () {
+    Route::get('/', [MeduolController::class, 'index']);
+    Route::get('/{id}', [MeduolController::class, 'show']);
+    Route::POST('/create', [MeduolController::class, 'create']);
+    Route::POST('/update/{id}', [MeduolController::class, 'update']);
+    Route::delete('/destroy/{id}', [MeduolController::class, 'destroy']);
+});
+############################ End Route  SubCategoryProgram ######################

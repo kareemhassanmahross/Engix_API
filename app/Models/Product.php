@@ -16,7 +16,8 @@ class Product extends Model
         'descriptionAr',
         'descriptionEn',
         'sub_category_id',
-        'price'
+        'price',
+        'brand'
     ];
     protected $hidden = ["created_at", "updated_at"];
     protected function image(): Attribute

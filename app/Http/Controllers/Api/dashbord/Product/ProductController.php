@@ -43,6 +43,7 @@ class ProductController extends Controller
                     'descriptionAr' => 'required',
                     'descriptionEn' => 'required',
                     'price' => 'required',
+                    'brand' => 'required',
                     'sub_category_id' => 'nullable',
                 ]
             );
@@ -61,6 +62,7 @@ class ProductController extends Controller
                 'amount' =>  $req->amount,
                 'descriptionAr' => $req->descriptionAr,
                 'descriptionEn' => $req->descriptionEn,
+                'brand' => $req->brand,
                 'price' => $req->price,
                 'sub_category_id' => $req->sub_category_id,
             ]);
@@ -87,6 +89,7 @@ class ProductController extends Controller
                 'nameAr' => 'required',
                 'nameEn' => 'required',
                 'amount' => 'required',
+                'brand' => 'required',
                 'descriptionAr' => 'required',
                 'descriptionEn' => 'required',
                 'price' => 'required',

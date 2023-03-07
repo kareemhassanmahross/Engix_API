@@ -13,16 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->string('nameEn');
-            $table->string('nameAr');
-            $table->string('brand');
             $table->text('descriptionAr');
             $table->text('descriptionEn');
-            $table->float('price');
-            $table->integer('amount');
-            // $table->foreignId("subCategory_id")->nullable()->constrained("sub_categories")->cascadeOnUpdate()->cascadeOnDelete();
+            $table->binary('image');
+            $table->text('youtupe');
+            $table->text('test');
+            $table->string('nameProgramAr');
+            $table->string('nameProgramEn');
+            $table->string('userName');
+            $table->string('password');
+            $table->foreignId("sub_category_program_id")->nullable()
+                ->constrained("sub_category_programs")->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -34,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('programs');
     }
 };
