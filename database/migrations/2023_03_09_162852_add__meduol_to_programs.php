@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('meduols', function (Blueprint $table) {
-            $table->id();
-            $table->string('nameAr');
-            $table->string('nameEn');
-            $table->foreignId("programs_id")->nullable()
-                ->constrained("programs")->cascadeOnUpdate()->cascadeOnDelete();
-            $table->timestamps();
+        Schema::table('programs', function (Blueprint $table) {
+            $table->json('Meduol')->nullable();
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meduols');
+        Schema::table('programs', function (Blueprint $table) {
+            //
+        });
     }
 };

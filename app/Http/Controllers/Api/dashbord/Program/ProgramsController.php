@@ -47,6 +47,7 @@ class ProgramsController extends Controller
                 'userName' => 'required',
                 'password' => 'required',
                 'sub_category_program_id' => 'nullable',
+                'Meduol' => 'nullable'
             ]
         );
         if ($Program->fails()) {
@@ -74,6 +75,7 @@ class ProgramsController extends Controller
             'userName' => $req->userName,
             'password' => $req->password,
             'sub_category_program_id' => $req->sub_category_program_id,
+            'Meduol' => $req->Meduol,
         ]);
         $file->move('images/Program/', $filename);
         return response()->json([
@@ -97,6 +99,7 @@ class ProgramsController extends Controller
                 'userName' => 'required',
                 'password' => 'required',
                 'sub_category_program_id' => 'nullable',
+                'Meduol' => 'nullable',
             ]
         );
         if ($validateProgram->fails()) {
@@ -129,7 +132,9 @@ class ProgramsController extends Controller
             'userName' => $req->userName,
             'password' => $req->password,
             'sub_category_program_id' => $req->sub_category_program_id,
+            'Meduol' => $req->Meduol
         ]);
+
         $image->move(public_path("images/Program/"), $nameOfNewImage);
         return response()->json([
             'status' => true,

@@ -34,6 +34,7 @@ class ProgramFactory extends Factory
             "nameProgramEn" => fake()->name(),
             "userName" => 'Admin',
             "password" => 'Admin',
+            // 'Meduol' => 'meduol',
             "sub_category_program_id" => random_int(1, 40),
         ];
     }
