@@ -19,8 +19,12 @@ class CategoryProgram extends Model
         'created_at',
         'updated_at'
     ];
-    public function SubCategoryProgram()
+    public function program()
     {
-        return $this->hasMany(SubCategoryProgram::class);
+        return $this->hasMany(Program::class);
     }
+    // public function SubCategoryProgram()
+    // {
+    //     return $this->hasMany(SubCategoryProgram::class);
+    // }
 }

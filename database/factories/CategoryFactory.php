@@ -18,7 +18,6 @@ class CategoryFactory extends Factory
     {
         $brans = [
             'Services',
-            'Programs',
             'Store',
         ];
         $image = [

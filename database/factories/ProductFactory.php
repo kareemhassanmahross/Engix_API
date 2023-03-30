@@ -27,7 +27,9 @@ class ProductFactory extends Factory
             'nameEn' => fake()->name(),
             'descriptionAr' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas iure voluptatum dolores porro incidunt ex blanditiis posimus et eos deleniti',
             'descriptionEn' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas iure voluptatum dolores porro incidunt ex blanditiis posimus et eos deleniti',
-            'price' => '15.00',
+            'priceBefore' => '20',
+            'priceAfter' => '30',
+            'commition' => '10',
             'amount' => random_int(1, 50),
             'sub_category_id' => random_int(1, 50),
             'brand' => $brans[0]

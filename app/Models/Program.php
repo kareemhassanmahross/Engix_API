@@ -19,20 +19,16 @@ class Program extends Model
         'nameProgramEn',
         'userName',
         'password',
-        'sub_category_programs_id',
+        'category_program_id',
         'Meduol'
     ];
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
-    public function medoul()
+    public function catagoryprogram()
     {
-        return $this->hasMany(Meduol::class);
-    }
-    public function subcatagoryprogram()
-    {
-        return $this->belongsTo(SubCategoryProgram::class, "sub_category_programs_id", "id");
+        return $this->belongsTo(CategoryProgram::class, "category_program_id", "id");
     }
     protected function Meduol(): Attribute
 

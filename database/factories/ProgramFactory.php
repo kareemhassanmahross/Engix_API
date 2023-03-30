@@ -24,6 +24,9 @@ class ProgramFactory extends Factory
             'http://127.0.0.1:8000/images/subcategory/Image1677502193.jpg',
         ];
         shuffle($image);
+        $Meduol = [
+            '1' => 'Categories', '2' => 'Stors', '3' => 'Seles', '4' => 'Employees'
+        ];
         return [
             "descriptionAr" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas iure voluptatum dolores porro incidunt ex blanditiis posimus et eos deleniti",
             "descriptionEn" => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas iure voluptatum dolores porro incidunt ex blanditiis posimus et eos deleniti',
@@ -34,8 +37,11 @@ class ProgramFactory extends Factory
             "nameProgramEn" => fake()->name(),
             "userName" => 'Admin',
             "password" => 'Admin',
-            // 'Meduol' => 'meduol',
-            "sub_category_program_id" => random_int(1, 40),
+            'Meduol' => $Meduol,
+            'priceBefore' => '20',
+            'priceAfter' => '30',
+            'commition' => '10',
+            "category_program_id" => random_int(1, 5),
         ];
     }
 }

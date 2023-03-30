@@ -10,20 +10,26 @@ use App\Http\Controllers\Api\dashbord\categoyOffer\CategoyOfferController;
 use App\Http\Controllers\Api\dashbord\contactus\ContactUsController;
 use App\Http\Controllers\Api\dashbord\Images\ImageController;
 use App\Http\Controllers\Api\dashbord\jobs\JobController;
-use App\Http\Controllers\Api\dashbord\Meduol\MeduolController;
 use App\Http\Controllers\Api\dashbord\Offer\OfferController;
 use App\Http\Controllers\Api\dashbord\OurClient\OurClientController;
 use App\Http\Controllers\Api\dashbord\OurWork\OurWorkController;
 use App\Http\Controllers\Api\dashbord\Program\ProgramsController;
 use App\Http\Controllers\Api\dashbord\socialmedia\SocialMediaController;
 use App\Http\Controllers\Api\dashbord\subcategory\SubCategoryController;
-use App\Http\Controllers\Api\dashbord\SubCategoryProgram\SubCategoryProgramController;
 use App\Http\Controllers\Api\slider\SliderController;
 use App\Http\Controllers\Api\Suppliers\SupplierController;
-use App\Models\SubCategoryProgram;
+use App\Http\Controllers\SendEmailResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/cd', [App\Http\Controllers\ContactUsController::class, 'index']);
+// Route::get('/cd', [App\Http\Controllers\ContactUsController::class, 'index']);
+
+####################### Email #############################
+
+Route::post('/ForgetPassword', [SendEmailResetPasswordController::class, 'resetPasswordEmail']);
+Route::get('/reset/{id}', [SendEmailResetPasswordController::class, 'reset']);
+Route::POST('/updatePassword', [SendEmailResetPasswordController::class, 'update']);
+####################### End-Email #############################
+
 Route::group(['prefix' => 'admin-dashboard'], function () {
     Route::POST('/register', [AuthController::class, 'createUser']);
     Route::POST('/login', [AuthController::class, 'loginUser']);
@@ -173,29 +179,11 @@ Route::group(['prefix' => 'CategoryProgram'], function () {
 });
 ############################ End Route  CategoryProgram ######################
 ############################ End Route  SubCategoryProgram ######################
-Route::group(['prefix' => 'SubCategoryProgram'], function () {
-    Route::get('/', [SubCategoryProgramController::class, 'index']);
-    Route::get('/{id}', [SubCategoryProgramController::class, 'show']);
-    Route::POST('/create', [SubCategoryProgramController::class, 'create']);
-    Route::POST('/update/{id}', [SubCategoryProgramController::class, 'update']);
-    Route::delete('/destroy/{id}', [SubCategoryProgramController::class, 'destroy']);
-});
-############################ End Route  SubCategoryProgram ######################
-############################ End Route  SubCategoryProgram ######################
 Route::group(['prefix' => 'Program'], function () {
     Route::get('/', [ProgramsController::class, 'index']);
     Route::get('/{id}', [ProgramsController::class, 'show']);
     Route::POST('/create', [ProgramsController::class, 'create']);
     Route::POST('/update/{id}', [ProgramsController::class, 'update']);
     Route::delete('/destroy/{id}', [ProgramsController::class, 'destroy']);
-});
-############################ End Route  SubCategoryProgram ######################
-############################ End Route  SubCategoryProgram ######################
-Route::group(['prefix' => 'Medule'], function () {
-    Route::get('/', [MeduolController::class, 'index']);
-    Route::get('/{id}', [MeduolController::class, 'show']);
-    Route::POST('/create', [MeduolController::class, 'create']);
-    Route::POST('/update/{id}', [MeduolController::class, 'update']);
-    Route::delete('/destroy/{id}', [MeduolController::class, 'destroy']);
 });
 ############################ End Route  SubCategoryProgram ######################

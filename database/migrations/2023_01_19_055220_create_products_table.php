@@ -20,9 +20,10 @@ return new class extends Migration
             $table->string('brand');
             $table->text('descriptionAr');
             $table->text('descriptionEn');
-            $table->float('price');
+            $table->float('priceBefore');
+            $table->float('priceAfter');
+            $table->float('commition');
             $table->integer('amount');
-            // $table->foreignId("subCategory_id")->nullable()->constrained("sub_categories")->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

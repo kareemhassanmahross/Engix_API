@@ -42,7 +42,9 @@ class ProductController extends Controller
                     'amount' => 'required',
                     'descriptionAr' => 'required',
                     'descriptionEn' => 'required',
-                    'price' => 'required',
+                    'priceBefore' => 'required',
+                    'priceAfter' => 'required',
+                    'commition' => 'required',
                     'brand' => 'required',
                     'sub_category_id' => 'nullable',
                 ]
@@ -62,6 +64,9 @@ class ProductController extends Controller
                 'amount' =>  $req->amount,
                 'descriptionAr' => $req->descriptionAr,
                 'descriptionEn' => $req->descriptionEn,
+                'priceBefore' => $req->priceBefore,
+                'priceAfter' => $req->priceAfter,
+                'commition' => $req->commition,
                 'brand' => $req->brand,
                 'price' => $req->price,
                 'sub_category_id' => $req->sub_category_id,
@@ -89,11 +94,13 @@ class ProductController extends Controller
                 'nameAr' => 'required',
                 'nameEn' => 'required',
                 'amount' => 'required',
-                'brand' => 'required',
                 'descriptionAr' => 'required',
                 'descriptionEn' => 'required',
-                'price' => 'required',
-                'sub_category_id' => 'required',
+                'priceBefore' => 'required',
+                'priceAfter' => 'required',
+                'commition' => 'required',
+                'brand' => 'required',
+                'sub_category_id' => 'nullable',
             ]
         );
         if ($validateProduct->fails()) {
@@ -105,13 +112,17 @@ class ProductController extends Controller
         }
         $product = Product::findOrFail($id);
         $product->update([
-            "nameAr" => $req->nameAr,
-            "nameEn" => $req->nameEn,
-            "amount" => $req->amount,
-            "descriptionAr" => $req->descriptionAr,
-            "descriptionEn" => $req->descriptionEn,
-            "price" => $req->price,
-            "sub_category_id" => $req->sub_category_id,
+            'nameAr' => $req->nameAr,
+            'nameEn' => $req->nameEn,
+            'amount' =>  $req->amount,
+            'descriptionAr' => $req->descriptionAr,
+            'descriptionEn' => $req->descriptionEn,
+            'priceBefore' => $req->priceBefore,
+            'priceAfter' => $req->priceAfter,
+            'commition' => $req->commition,
+            'brand' => $req->brand,
+            'price' => $req->price,
+            'sub_category_id' => $req->sub_category_id,
         ]);
         return response()->json([
             'status' => true,

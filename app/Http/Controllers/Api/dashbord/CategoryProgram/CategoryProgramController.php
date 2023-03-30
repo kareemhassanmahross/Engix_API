@@ -21,7 +21,7 @@ class CategoryProgramController extends Controller
     }
     public function index()
     {
-        $categoryPrograms = CategoryProgram::with('SubCategoryProgram')->get();
+        $categoryPrograms = CategoryProgram::with('program')->get();
         if ($categoryPrograms->count() == 0) {
             return response()->json([
                 'status' => true,
@@ -32,7 +32,7 @@ class CategoryProgramController extends Controller
     }
     public function show($id)
     {
-        $categoryPrograms = CategoryProgram::with('SubCategoryProgram')
+        $categoryPrograms = CategoryProgram::with('program')
             ->where('id', $id)->get();
         if ($categoryPrograms->count() == 0) {
             return response()->json([

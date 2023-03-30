@@ -8,21 +8,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Carbon\Carbon;
 
 class AuthUserController extends Controller
 {
     public function createUser(Request $request)
     {
-        // dd($request);
+        //     // dd($request);
         try {
-            // Validated
             $validateUser = Validator::make(
                 $request->all(),
                 [
                     'nameAr' => 'required',
                     'nameEn' => 'required',
                     'email' => 'required|email|unique:users,email',
+                    'inAffilate' => 'required|array',
+                    'methodToPay' => 'required',
                     'password' => 'required'
                 ]
             );
@@ -34,10 +34,13 @@ class AuthUserController extends Controller
                     'errors' => $validateUser->errors()
                 ], 401);
             }
+            // dd('kareem');
             $user = User::create([
                 'nameAr' => $request->nameAr,
                 'nameEn' => $request->nameEn,
                 'email' => $request->email,
+                "inAffilate" => $request->inAffilate,
+                "methodToPay" => $request->methodToPay,
                 'password' => Hash::make($request->password)
             ]);
 
@@ -100,7 +103,6 @@ class AuthUserController extends Controller
     }
     public function logoutUser(Request $req)
     {
-        // auth()->user()->Passport::tokensExpireIn(Carbon::now()->addDays(15));
         $req->user()->currentAccessToken()->delete();
         return response()->json([
             'status' => true,

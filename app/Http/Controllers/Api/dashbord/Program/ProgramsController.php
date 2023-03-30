@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\dashbord\Program;
 
 use App\Http\Controllers\Controller;
 use App\Models\Program;
-use App\Models\Programs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,7 +11,7 @@ class ProgramsController extends Controller
 {
     public function index()
     {
-        $programs = Program::with('subcatagoryprogram')->with('medoul')->get();
+        $programs = Program::with('catagoryprogram')->get();
         if ($programs->count() == 0) {
             return response()->json([
                 'status' => true,
@@ -23,7 +22,7 @@ class ProgramsController extends Controller
     }
     public function show($id)
     {
-        $programs = Program::with('subcatagoryprogram')->where('id', $id)->get();
+        $programs = Program::with('catagoryprogram')->where('id', $id)->get();
         if ($programs->count() == 0) {
             return response()->json([
                 'status' => true,
@@ -44,9 +43,12 @@ class ProgramsController extends Controller
                 'test' => 'required',
                 'nameProgramAr' => 'required',
                 'nameProgramEn' => 'required',
+                'priceBefore' => 'required',
+                'priceAfter' => 'required',
+                'commition' => 'required',
                 'userName' => 'required',
                 'password' => 'required',
-                'sub_category_program_id' => 'nullable',
+                'category_program_id' => 'nullable',
                 'Meduol' => 'nullable'
             ]
         );
@@ -72,9 +74,12 @@ class ProgramsController extends Controller
             'test' => $req->test,
             'nameProgramAr' => $req->nameProgramAr,
             'nameProgramEn' => $req->nameProgramEn,
+            'priceBefore' => $req->priceBefore,
+            'priceAfter' => $req->priceAfter,
+            'commition' => $req->commition,
             'userName' => $req->userName,
             'password' => $req->password,
-            'sub_category_program_id' => $req->sub_category_program_id,
+            'category_program_id' => $req->category_program_id,
             'Meduol' => $req->Meduol,
         ]);
         $file->move('images/Program/', $filename);
@@ -96,10 +101,13 @@ class ProgramsController extends Controller
                 'test' => 'required',
                 'nameProgramAr' => 'required',
                 'nameProgramEn' => 'required',
+                'priceBefore' => 'required',
+                'priceAfter' => 'required',
+                'commition' => 'required',
                 'userName' => 'required',
                 'password' => 'required',
-                'sub_category_program_id' => 'nullable',
-                'Meduol' => 'nullable',
+                'category_program_id' => 'nullable',
+                'Meduol' => 'nullable'
             ]
         );
         if ($validateProgram->fails()) {
@@ -129,10 +137,13 @@ class ProgramsController extends Controller
             'test' => $req->test,
             'nameProgramAr' => $req->nameProgramAr,
             'nameProgramEn' => $req->nameProgramEn,
+            'priceBefore' => $req->priceBefore,
+            'priceAfter' => $req->priceAfter,
+            'commition' => $req->commition,
             'userName' => $req->userName,
             'password' => $req->password,
-            'sub_category_program_id' => $req->sub_category_program_id,
-            'Meduol' => $req->Meduol
+            'category_program_id' => $req->category_program_id,
+            'Meduol' => $req->Meduol,
         ]);
 
         $image->move(public_path("images/Program/"), $nameOfNewImage);

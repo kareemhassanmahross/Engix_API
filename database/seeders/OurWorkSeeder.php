@@ -15,6 +15,6 @@ class OurWorkSeeder extends Seeder
      */
     public function run()
     {
-        OurWork::factory(100)->create();
+        OurWork::factory(20)->create();
     }
 }

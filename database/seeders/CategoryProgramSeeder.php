@@ -16,6 +16,6 @@ class CategoryProgramSeeder extends Seeder
      */
     public function run()
     {
-        CategoryProgram::factory(10)->create();
+        CategoryProgram::factory(5)->create();
     }
 }

@@ -24,8 +24,11 @@ return new class extends Migration
             $table->string('nameProgramEn');
             $table->string('userName');
             $table->string('password');
-            $table->foreignId("sub_category_program_id")->nullable()
-                ->constrained("sub_category_programs")->cascadeOnUpdate()->cascadeOnDelete();
+            $table->float('priceBefore');
+            $table->float('priceAfter');
+            $table->float('commition');
+            $table->foreignId("category_program_id")->nullable()
+                ->constrained("category_programs")->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('nameEn');
             $table->string('nameAr');
             $table->string('email')->unique();
+            $table->json('inAffilate');
+            $table->string('methodToPay');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
