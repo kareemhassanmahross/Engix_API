@@ -23,7 +23,7 @@ class ProductController extends Controller
     }
     public function index()
     {
-        $products = Product::with('images')->get();
+        $products = Product::where('spacialProduct', 1)->with('images')->get();
         return response($products);
     }
     public function show($id)
@@ -47,6 +47,7 @@ class ProductController extends Controller
                     'commition' => 'required',
                     'brand' => 'required',
                     'sub_category_id' => 'nullable',
+                    'spacialProduct' => 'required|boolean'
                 ]
             );
             if ($validateProduct->fails()) {
@@ -70,6 +71,7 @@ class ProductController extends Controller
                 'brand' => $req->brand,
                 'price' => $req->price,
                 'sub_category_id' => $req->sub_category_id,
+                'spacialProduct' => $req->spacialProduct
             ]);
 
             return response()->json([
@@ -101,6 +103,7 @@ class ProductController extends Controller
                 'commition' => 'required',
                 'brand' => 'required',
                 'sub_category_id' => 'nullable',
+                'spacialProduct' => 'required|boolean'
             ]
         );
         if ($validateProduct->fails()) {
@@ -123,6 +126,7 @@ class ProductController extends Controller
             'brand' => $req->brand,
             'price' => $req->price,
             'sub_category_id' => $req->sub_category_id,
+            'spacialProduct' => $req->spacialProduct
         ]);
         return response()->json([
             'status' => true,

@@ -17,7 +17,6 @@ class ProductFactory extends Factory
     public function definition()
     {
         $brans = [
-            'Services',
             'Programs',
             'Store',
         ];

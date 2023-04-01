@@ -22,8 +22,9 @@ return new class extends Migration
             $table->text('descriptionEn');
             $table->float('priceBefore');
             $table->float('priceAfter');
-            $table->float('commition');
+            $table->integer('commition');
             $table->integer('amount');
+            $table->boolean('spacialProduct')->default(0);
             $table->timestamps();
         });
     }

@@ -16,7 +16,10 @@ class Product extends Model
         'descriptionAr',
         'descriptionEn',
         'sub_category_id',
-        'price',
+        'priceBefore',
+        'priceAfter',
+        'commition',
+        'spacialProduct',
         'brand'
     ];
     protected $hidden = ["created_at", "updated_at"];
