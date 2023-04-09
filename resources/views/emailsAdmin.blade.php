@@ -23,17 +23,26 @@
             <td>name</td>
             <td>qty</td>
             <td>price</td>
+            <td>commition</td>
             <td>Total Price</td>
+            <td>Total commition</td>
         </tr>
         @foreach ($info2 as $i => $item)
             <tr>
                 <td> {{ $item['name'] }}</td>
                 <td> {{ $item['qty'] }}</td>
                 <td> {{ $item['price'] }}</td>
+                <td> {{ $item['commition'] }}</td>
                 <td> {{ $item['qty'] * $item['price'] }}</td>
+                <td> {{ $item['qty'] * $item['commition'] }}</td>
             </tr>
         @endforeach
     </table>
+    <div class="">
+        @foreach ($arra as $x => $x_value)
+            <p>{{ $x . ' : ' . $x_value }}</p> <br />
+        @endforeach
+    </div>
 </body>
 
 </html>

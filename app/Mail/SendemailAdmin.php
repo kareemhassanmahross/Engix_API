@@ -11,16 +11,18 @@ class SendemailAdmin extends Mailable
     use Queueable, SerializesModels;
     public $info;
     public $info2;
+    public $arra;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($info, $info2)
+    public function __construct($info, $info2, $arra)
     {
         $this->info = $info;
         $this->info2 = $info2;
+        $this->arra = $arra;
     }
 
     public function build()

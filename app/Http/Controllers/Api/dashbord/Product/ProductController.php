@@ -23,7 +23,7 @@ class ProductController extends Controller
     }
     public function index()
     {
-        $products = Product::where('spacialProduct', 1)->with('images')->get();
+        $products = Product::with('images')->get();
         return response($products);
     }
     public function show($id)

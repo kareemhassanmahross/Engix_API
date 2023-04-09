@@ -21,7 +21,7 @@
         <button type="submit" class="btn btn-link">Link</button>
     </form> --}}
     {{-- @dd($id) --}}
-    <a href="http://127.0.0.1:8000/api/reset/{{ $id }}" class="btn btn-primary">Reset
+    <a href="http://127.0.0.1:8000/api/reset" class="btn btn-primary">Reset
         Password</a>
 
 

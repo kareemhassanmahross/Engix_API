@@ -26,10 +26,11 @@ return new class extends Migration
             $table->string('password');
             $table->float('priceBefore');
             $table->float('priceAfter');
-            $table->float('commition');
+            $table->integer('commition');
             $table->foreignId("category_program_id")->nullable()
                 ->constrained("category_programs")->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
+            $table->json('Meduol')->nullable();
         });
     }
 

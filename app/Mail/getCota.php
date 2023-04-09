@@ -9,27 +9,22 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SendemailUser extends Mailable
+class getCota extends Mailable
 {
     use Queueable, SerializesModels;
-    public $info;
-    public $info2;
-    public $arra;
-
+    public $data;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($info, $info2, $arra)
+    public function __construct($data)
     {
-        $this->info = $info;
-        $this->info2 = $info2;
-        $this->arra = $arra;
+        $this->data = $data;
     }
 
     public function build()
     {
-        return $this->subject('Test Email User')->view('emails');
+        return $this->subject('Get Cota')->view('getcota');
     }
 }

@@ -18,7 +18,10 @@ use App\Http\Controllers\Api\dashbord\socialmedia\SocialMediaController;
 use App\Http\Controllers\Api\dashbord\subcategory\SubCategoryController;
 use App\Http\Controllers\Api\slider\SliderController;
 use App\Http\Controllers\Api\Suppliers\SupplierController;
+use App\Http\Controllers\SendCardByEmailController;
+use App\Http\Controllers\sendComplainByEmail;
 use App\Http\Controllers\SendEmailResetPasswordController;
+use App\Http\Controllers\sendGetCotaByEmail;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/cd', [App\Http\Controllers\ContactUsController::class, 'index']);
@@ -28,6 +31,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('/ForgetPassword', [SendEmailResetPasswordController::class, 'resetPasswordEmail']);
 Route::get('/reset/{id}', [SendEmailResetPasswordController::class, 'reset']);
 Route::POST('/updatePassword', [SendEmailResetPasswordController::class, 'update']);
+Route::post('/SendComplain', [sendComplainByEmail::class, 'index']);
+Route::post('/SentGetCota', [sendGetCotaByEmail::class, 'index']);
+Route::post('/SendEmail', [SendCardByEmailController::class, 'SendEmail']);
+Route::post('/SendEmailOrder',[SendCardByEmailController::class , 'SendEmailOrder']);
 ####################### End-Email #############################
 
 Route::group(['prefix' => 'admin-dashboard'], function () {

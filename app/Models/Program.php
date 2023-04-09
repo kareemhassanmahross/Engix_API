@@ -19,6 +19,9 @@ class Program extends Model
         'nameProgramEn',
         'userName',
         'password',
+        'priceBefore',
+        'priceAfter',
+        'commition',
         'category_program_id',
         'Meduol'
     ];
@@ -31,7 +34,6 @@ class Program extends Model
         return $this->belongsTo(CategoryProgram::class, "category_program_id", "id");
     }
     protected function Meduol(): Attribute
-
     {
         return Attribute::make(
             get: fn ($Meduol) => json_decode($Meduol, true),
