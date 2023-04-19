@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\dashbord\categoryOurWork\categoryOurWorkController;
 use App\Http\Controllers\Api\dashbord\CategoryProgram\CategoryProgramController;
 use App\Http\Controllers\Api\dashbord\categoyOffer\CategoyOfferController;
 use App\Http\Controllers\Api\dashbord\contactus\ContactUsController;
+use App\Http\Controllers\Api\dashbord\Customerserrvice\CustomerService;
 use App\Http\Controllers\Api\dashbord\Images\ImageController;
 use App\Http\Controllers\Api\dashbord\jobs\JobController;
 use App\Http\Controllers\Api\dashbord\Offer\OfferController;
@@ -34,7 +35,7 @@ Route::POST('/updatePassword', [SendEmailResetPasswordController::class, 'update
 Route::post('/SendComplain', [sendComplainByEmail::class, 'index']);
 Route::post('/SentGetCota', [sendGetCotaByEmail::class, 'index']);
 Route::post('/SendEmail', [SendCardByEmailController::class, 'SendEmail']);
-Route::post('/SendEmailOrder',[SendCardByEmailController::class , 'SendEmailOrder']);
+Route::post('/SendEmailOrder', [SendCardByEmailController::class, 'SendEmailOrder']);
 ####################### End-Email #############################
 
 Route::group(['prefix' => 'admin-dashboard'], function () {
@@ -194,3 +195,10 @@ Route::group(['prefix' => 'Program'], function () {
     Route::delete('/destroy/{id}', [ProgramsController::class, 'destroy']);
 });
 ############################ End Route  SubCategoryProgram ######################
+Route::group(['prefix' => 'CustomerService'], function () {
+    Route::get('/', [CustomerService::class, 'index']);
+    Route::get('/{id}', [CustomerService::class, 'show']);
+    Route::POST('/create', [CustomerService::class, 'create']);
+    Route::POST('/update/{id}', [CustomerService::class, 'update']);
+    Route::delete('/destroy/{id}', [CustomerService::class, 'destroy']);
+});

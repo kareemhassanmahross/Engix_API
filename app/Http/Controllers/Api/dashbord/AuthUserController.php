@@ -11,19 +11,24 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthUserController extends Controller
 {
+    public function index()
+    {
+        $users = User::get();
+        return response($users);
+    }
     public function createUser(Request $request)
     {
-        //     // dd($request);
         try {
             $validateUser = Validator::make(
                 $request->all(),
                 [
-                    'nameAr' => 'required',
-                    'nameEn' => 'required',
+                    'name' => 'required',
                     'email' => 'required|email|unique:users,email',
-                    'inAffilate' => 'required|array',
+                    'age' => 'required',
+                    'country' => 'required',
                     'methodToPay' => 'required',
-                    'password' => 'required'
+                    'password' => 'required',
+                    'phone' => 'required'
                 ]
             );
 
@@ -34,12 +39,12 @@ class AuthUserController extends Controller
                     'errors' => $validateUser->errors()
                 ], 401);
             }
-            // dd('kareem');
             $user = User::create([
-                'nameAr' => $request->nameAr,
-                'nameEn' => $request->nameEn,
+                'name' => $request->name,
                 'email' => $request->email,
-                "inAffilate" => $request->inAffilate,
+                "age" => $request->age,
+                'country' => $request->country,
+                'phone' => $request->phone,
                 "methodToPay" => $request->methodToPay,
                 'password' => Hash::make($request->password)
             ]);
@@ -89,6 +94,11 @@ class AuthUserController extends Controller
             $user = User::where('email', $request->email)->first();
             if ($user || Hash::check($request->password, $user->password)) {
                 return response()->json([
+                    'user' => [
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'phone' => $user->phone
+                    ],
                     'status' => true,
                     'message' => 'User Logged In Successfully',
                     'token' => $user->createToken("User API TOKEN " . $request->email)->plainTextToken

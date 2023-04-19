@@ -21,12 +21,13 @@ class User extends Authenticatable
     protected $guard = 'users';
 
     protected $fillable = [
-        'nameEn',
-        'nameAr',
+        'name',
         'email',
         'password',
-        'inAffilate',
         'methodToPay',
+        'country',
+        'age',
+        'phone'
     ];
 
     /**
@@ -37,6 +38,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verified_at',
+        'created_at',
+        'updated_at',
     ];
 
     /**
@@ -48,11 +52,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected function inAffilate(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => json_decode($value, true),
-            set: fn ($value) => json_encode($value),
-        );
-    }
+    // protected function inAffilate(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn ($value) => json_decode($value, true),
+    //         set: fn ($value) => json_encode($value),
+    //     );
+    // }
 }
