@@ -31,7 +31,7 @@ class ProductFactory extends Factory
             'commition' => '10',
             'amount' => random_int(1, 50),
             'sub_category_id' => random_int(1, 50),
-            'prand' => $brans[0]
+            'brand' => $brans[0]
         ];
     }
 }

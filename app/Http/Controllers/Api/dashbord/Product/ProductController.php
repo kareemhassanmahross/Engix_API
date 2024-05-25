@@ -14,12 +14,12 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        if (Auth::guard('admins')->check()) {
-            $this->middleware('auth:sanctum');
-            $this->middleware('can:products');
-        } else {
-            // $this->middleware('auth:sanctum');
-        }
+        // if (Auth::guard('admins')->check()) {
+        //     $this->middleware('auth:sanctum');
+        //     $this->middleware('can:products');
+        // } else {
+        //     // $this->middleware('auth:sanctum');
+        // }
     }
     public function index()
     {

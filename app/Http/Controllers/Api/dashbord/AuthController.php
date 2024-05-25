@@ -21,9 +21,6 @@ class AuthController extends Controller
 
     public function createUser(Request $request)
     {
-        // dd($request);
-        // $isAdmins = Auth::guard('admin')->isAdmin;
-        // dd($isAdmins);
         try {
             // Validated
             $validateUser = Validator::make(

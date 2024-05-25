@@ -34,15 +34,14 @@ Route::get('/reset/{id}', [SendEmailResetPasswordController::class, 'reset']);
 Route::POST('/updatePassword', [SendEmailResetPasswordController::class, 'update']);
 Route::post('/SendComplain', [sendComplainByEmail::class, 'index']);
 Route::post('/SentGetCota', [sendGetCotaByEmail::class, 'index']);
-Route::post('/SendEmail', [SendCardByEmailController::class, 'SendEmail']);
 Route::post('/SendEmailOrder', [SendCardByEmailController::class, 'SendEmailOrder']);
 ####################### End-Email #############################
 
-Route::group(['prefix' => 'admin-dashboard'], function () {
-    Route::POST('/register', [AuthController::class, 'createUser']);
-    Route::POST('/login', [AuthController::class, 'loginUser']);
-    Route::POST('/logout', [AuthController::class, 'logoutUser'])->middleware('auth:sanctum');
-});
+// Route::group(['prefix' => 'admin-dashboard'], function () {
+//     Route::POST('/register', [AuthController::class, 'createUser']);
+//     Route::POST('/login', [AuthController::class, 'loginUser']);
+//     Route::POST('/logout', [AuthController::class, 'logoutUser'])->middleware('auth:sanctum');
+// });
 ############################ Route Category ######################
 Route::group(['prefix' => 'categories'], function () {
     Route::get('/', [CategoryController::class, 'index']);
