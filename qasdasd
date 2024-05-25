@@ -1,0 +1,81 @@
+[33mcommit 0e678ae98bfef6098c63b31565e9df0cefc53f25[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: kareemhassanmahross <kareem.hassan.diap@gmail.com>
+Date:   Sat May 25 03:29:01 2024 +0300
+
+    myproject
+
+[1mdiff --git a/app/Http/Controllers/Api/dashbord/AuthController.php b/app/Http/Controllers/Api/dashbord/AuthController.php[m
+[1mindex ffae0c6..64c5e59 100644[m
+[1m--- a/app/Http/Controllers/Api/dashbord/AuthController.php[m
+[1m+++ b/app/Http/Controllers/Api/dashbord/AuthController.php[m
+[36m@@ -21,9 +21,6 @@[m [mclass AuthController extends Controller[m
+ [m
+     public function createUser(Request $request)[m
+     {[m
+[31m-        // dd($request);[m
+[31m-        // $isAdmins = Auth::guard('admin')->isAdmin;[m
+[31m-        // dd($isAdmins);[m
+         try {[m
+             // Validated[m
+             $validateUser = Validator::make([m
+[1mdiff --git a/app/Http/Controllers/Api/dashbord/Product/ProductController.php b/app/Http/Controllers/Api/dashbord/Product/ProductController.php[m
+[1mindex 4dd2bb7..d5fc8d3 100644[m
+[1m--- a/app/Http/Controllers/Api/dashbord/Product/ProductController.php[m
+[1m+++ b/app/Http/Controllers/Api/dashbord/Product/ProductController.php[m
+[36m@@ -14,12 +14,12 @@[m [mclass ProductController extends Controller[m
+ {[m
+     public function __construct()[m
+     {[m
+[31m-        if (Auth::guard('admins')->check()) {[m
+[31m-            $this->middleware('auth:sanctum');[m
+[31m-            $this->middleware('can:products');[m
+[31m-        } else {[m
+[31m-            // $this->middleware('auth:sanctum');[m
+[31m-        }[m
+[32m+[m[32m        // if (Auth::guard('admins')->check()) {[m
+[32m+[m[32m        //     $this->middleware('auth:sanctum');[m
+[32m+[m[32m        //     $this->middleware('can:products');[m
+[32m+[m[32m        // } else {[m
+[32m+[m[32m        //     // $this->middleware('auth:sanctum');[m
+[32m+[m[32m        // }[m
+     }[m
+     public function index()[m
+     {[m
+[1mdiff --git a/database/factories/ProductFactory.php b/database/factories/ProductFactory.php[m
+[1mindex 7565b9d..efbdd2a 100644[m
+[1m--- a/database/factories/ProductFactory.php[m
+[1m+++ b/database/factories/ProductFactory.php[m
+[36m@@ -31,7 +31,7 @@[m [mpublic function definition()[m
+             'commition' => '10',[m
+             'amount' => random_int(1, 50),[m
+             'sub_category_id' => random_int(1, 50),[m
+[31m-            'prand' => $brans[0][m
+[32m+[m[32m            'brand' => $brans[0][m
+         ];[m
+     }[m
+ }[m
+[1mdiff --git a/routes/dashboard.php b/routes/dashboard.php[m
+[1mindex a3fff98..a471cdf 100644[m
+[1m--- a/routes/dashboard.php[m
+[1m+++ b/routes/dashboard.php[m
+[36m@@ -34,15 +34,14 @@[m
+ Route::POST('/updatePassword', [SendEmailResetPasswordController::class, 'update']);[m
+ Route::post('/SendComplain', [sendComplainByEmail::class, 'index']);[m
+ Route::post('/SentGetCota', [sendGetCotaByEmail::class, 'index']);[m
+[31m-Route::post('/SendEmail', [SendCardByEmailController::class, 'SendEmail']);[m
+ Route::post('/SendEmailOrder', [SendCardByEmailController::class, 'SendEmailOrder']);[m
+ ####################### End-Email #############################[m
+ [m
+[31m-Route::group(['prefix' => 'admin-dashboard'], function () {[m
+[31m-    Route::POST('/register', [AuthController::class, 'createUser']);[m
+[31m-    Route::POST('/login', [AuthController::class, 'loginUser']);[m
+[31m-    Route::POST('/logout', [AuthController::class, 'logoutUser'])->middleware('auth:sanctum');[m
+[31m-});[m
+[32m+[m[32m// Route::group(['prefix' => 'admin-dashboard'], function () {[m
+[32m+[m[32m//     Route::POST('/register', [AuthController::class, 'createUser']);[m
+[32m+[m[32m//     Route::POST('/login', [AuthController::class, 'loginUser']);[m
+[32m+[m[32m//     Route::POST('/logout', [AuthController::class, 'logoutUser'])->middleware('auth:sanctum');[m
+[32m+[m[32m// });[m
+ ############################ Route Category ######################[m
+ Route::group(['prefix' => 'categories'], function () {[m
+     Route::get('/', [CategoryController::class, 'index']);[m
